@@ -1,11 +1,11 @@
 [[redirects]]
   from = "/studio"
   to = "https://miradorstudio.netlify.app/"
-  status = 200
+  status = 301
   force = true
 
 [[redirects]]
   from = "/studio/*"
   to = "https://miradorstudio.netlify.app/"
-  status = 200
+  status = 301
   force = true
