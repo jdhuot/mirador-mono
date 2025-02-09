@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "/studio"
+  to = "https://miradorstudio.netlify.app/studio"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/studio/*"
+  to = "https://miradorstudio.netlify.app/studio/:splat"
+  status = 200
+  force = true
