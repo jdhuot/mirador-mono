@@ -10,7 +10,7 @@ export default defineConfig({
   projectId: '13b7dop1',
   dataset: 'production',
 
-  basePath: '/studio',
+  // basePath: '/studio',
 
   // project: {
   //   basePath: '/studio'
