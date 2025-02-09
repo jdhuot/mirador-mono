@@ -6,6 +6,6 @@
 
 [[redirects]]
   from = "/studio/*"
-  to = "https://miradorstudio.netlify.app/:splat"
+  to = "https://miradorstudio.netlify.app/"
   status = 200
   force = true
