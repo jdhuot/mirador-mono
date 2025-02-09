@@ -23,6 +23,12 @@ export default defineConfig({
     apiHost: 'https://miradorstudio.netlify.app',
   },
 
+  // ✅ Force all static assets to load from the correct domain
+  vite: (config) => ({
+    ...config,
+    base: 'https://miradorstudio.netlify.app/',
+  }),
+
   schema: {
     types: schemaTypes,
   },
