@@ -18,6 +18,11 @@ export default defineConfig({
 
   plugins: [structureTool(), visionTool()],
 
+  studio: {
+    basePath: '/',
+    apiHost: 'https://miradorstudio.netlify.app',
+  },
+
   schema: {
     types: schemaTypes,
   },
