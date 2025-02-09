@@ -1,0 +1,242 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.jsx';
+
+import MySwiper from '../components/MySwiper.jsx';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+
+import splashImage from '../assets/investment-management/splash.jpg';
+import portImage from '../assets/investment-management/portfolio-management.jpg';
+import benImage1 from '../assets/investment-management/ben-1.svg';
+import benImage2 from '../assets/investment-management/ben-2.svg';
+import benImage3 from '../assets/investment-management/ben-3.svg';
+
+
+const tabItems = [
+    {
+      title: "Overview",
+      content: `
+				<p>
+					Above all else, the Mirador Income and Stability Fund is designed to get you paid now versus waiting and hoping for capital gains in the future. The market is fickle and these gains may, or may not come in your required time frame. As they say, “It’s better to have cash in your pocket than hope in the closet.” That being said, the Mirador Income and Stability fund has achieved meaningful gains in the past and is well positioned to do so in the future.
+				</p>
+				<p>
+					The Mirador Income and Stability Fund has had a 7% or better distribution for several years now. We can only achieve this consistent, high income and capital stability through our multi-decade experience and true independence, our scientific approach, and our clever portfolio construction and implementation.
+				</p>
+				<br/>
+				<div class="tac flex-v center">
+					<h4>
+						Want to learn more, or talk “shop” with Stan or Joyce?
+					</h4>
+					<a href="/contact"><button class="button-primary">Book a Call Now!</button></a>
+				</div>
+					`,
+    },
+    {
+      title: "Breakdown",
+      content: `
+        <h5>
+					The Mirador Income and Stability Fund is a collection of income strategies paying you cash now  – several types of investment income streams, with each of the streams derived from a diversified portfolio of securities:
+				</h5>
+				<p>
+					Fixed Income – The Mirador Stability and Income Fund currently uses preferred shares for its fixed income allocation. Preferred shares are higher than common shares on the scale of security, but a step or so lower than bonds. Some think of them as bonds that pay dividends.  They usually have a higher yield than bonds, and with preferred shares paying dividends rather than interest, you gain an after-tax advantage over bonds because of the dividend tax credit.
+				</p>
+				<p>
+					Equity Income:
+				</p>
+				<ul>
+					<li>
+						Dividend Growth – Canadian common shares of companies with above average dividend yields and financial attributes that tend to result in increased dividends over time. Relying on dividend growth alone is a problem like hoping for future stock price gains in your required time frame – the dividend might or might not grow enough in your time frame. And, if a company does achieve a high level of dividend growth, but this growth is applied to a very low original dividend, it may be decades before the current yield is attractive. Our clients want to be paid well now, and even better in the future. We have achieved this by starting with above average yields, adding dividend growth to these yields, and then actively managing our models and optimizing the portfolio allocations.
+					</li>
+					<li>
+						High Yield – Publicly traded Canadian Equities with unusually high yields and many of the financial and market attributes needed to maintain these yields. These equities tend to provide exposures to industries not often associated with the dividend growth selections such as real estate, resources, and technology companies.
+					</li>
+				</ul>
+				<p>
+					Covered Call Writing – Buying options in common stocks is like gambling in the casino, you will not consistently win, that’s why casinos are so profitable. But what if you can BE the casino and sell common stock options to speculators? That’s what writing calls is. We are the casino selling call options to gamblers. We are not gambling, the price we receive is another income stream that we earn by giving up some of the possible upside to the underlying stocks. It’s a low-risk, high cash flow strategy that works well when you understand the optimal factors for Covered Call Writing for income.
+				</p>
+				<p>
+					Market Exposure – In addition to this collection of income streams paying you all this cash, we hold back some capital to manage the overall risk of the Mirador Income and Stability Fund.  In portfolio management, the simplest way to reduce risk is to sell stocks and move to cash when times are looking dire.  But with income programs like the Mirador Income and Stability Fund, that’s like killing a goose laying the golden eggs.  So instead, when the market stance shifts from greed to fear and indexes start to decline,  we implement strategies to protect the capital without sacrificing as many of our cash producing investments, helping us to maintain the income stream that our client’s treasure.
+				</p>
+			
+      `,
+    },
+    {
+      title: "What Makes Us Different",
+      content: `
+			<h5>True Independence</h5>
+			<p>
+				At Mirador Corporation, we have an unwavering commitment to true independence. We have no allegiances or associations with any branch manager or head office, and we won’t be easily influenced. We navigate the markets free from external influences, ensuring an unbiased approach to your financial success.
+			</p>
+			<ul>
+				<li>
+					No allegiances / associations
+				</li>
+				<li>
+					No external influences
+				</li>
+				<li>
+					No third party investors
+				</li>
+			</ul>
+			<div class="hr"></div>
+
+			<h5>No Jargon, No Surprises</h5>
+			<p>
+				At Mirador, transparency isn’t just a buzzword, it’s a fundamental principle. Our fees are transparent and Mirador pays all trading costs. We don’t use any industry jargon and confusing acronyms in our reporting, ensuring you have a clear understanding of your investments.
+			</p>
+			<ul>
+				<li>
+					No hidden fees
+				</li>
+				<li>
+					Mirador pays all trading costs
+				</li>
+				<li>
+					See-through reporting & zero jargon
+				</li>
+			</ul>
+			<div class="hr"></div>
+
+			<h5>Driven by Data</h5>
+			<p>
+				At Mirador, transparency isn’t just a buzzword, it’s a fundamental principle. Our fees are transparent and Mirador pays all trading costs. We don’t use any industry jargon and confusing acronyms in our reporting, ensuring you have a clear understanding of your investments.
+			</p>
+			<ul>
+				<li>
+					Technical Analysis
+				</li>
+				<li>
+					Quantitative Analysis
+				</li>
+				<li>
+					Modelling and back-testing
+				</li>
+			</ul>
+			`,
+    },
+  ];
+
+---
+
+<Layout 
+	title="Investment Management" 
+	description="Portfolio Management in Calgary When it comes to investing, we do one thing really well While many investment firms try to cater to various investment styles, we stand apart with a single focus: income with stability. We do not rely on mutual funds or chase the latest investment trends, whether it be in value, growth..."
+	ogImageUrl={portImage.src}
+>
+	<section>
+		<div class="relative container v-padding">
+			<img src={heroBg.src} class="services-hero-bg" />
+			<div class="tac mw-900">
+				<div class="services-hero-section">
+					<div class="hero-text flex-v center lrg">
+						<h4>Portfolio Management in Calgary</h4>
+						<h1>When it comes to investing, we do one thing really well</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+  <section>
+    <div class="container">
+      <div class="hr"></div>
+    </div>
+  </section>
+	<section class="v-padding">
+    <div class="container">
+      <div class="grid-2 forty-sixty lg center">
+				<div class="image-wrapper">
+					<img src={splashImage.src} alt=""/>
+				</div>
+        <div class="flex-v">
+          <h4>High Income <br /> Comfortable Stability</h4>
+          <p class="smb-0">
+            While many investment firms try to cater to various investment styles, we stand apart with a single focus: income with stability. We do not rely on mutual funds or chase the latest investment trends, whether it be in value, growth, momentum, or cryptocurrency. 
+          </p>
+          <p>
+            Instead, we manage diversified portfolios under the Mirador Income and Stability programs, which are designed to provide high income and comfortable stability.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+	<section id="fund" class="fund-section smb-6">
+		<div class="container">
+			<h3 class="tac smb-3">Mirador Income and Stability Fund</h3>
+			<Tabs items={tabItems} client:load />
+		</div>
+	</section>
+	<section class="v-padding cb-off-black">
+		<div class="container">
+			<div class="tac flex-v center mw-1000">
+				<h2 class="smb-0">The Mirador Portfolio Approach</h2>
+				<p>
+					When it comes to portfolio management, we take out the biases, heuristics, and emotions that could influence our investments. Instead, we have adopted a data-driven, back-to-basics approach which adapts to the ever-evolving market conditions.
+				</p>
+        <a href="/our-approach">
+          <button class="button-secondary">LEARN MORE</button>
+        </a>
+			</div>
+		</div>
+	</section>
+	<section class="v-padding">
+    <div class="container">
+      <div class="grid-2 sixty-forty lg center smb-6">
+        <div class="flex-v">
+          <h4>The Importance of Independence in Portfolio Management</h4>
+          <p class="smb-0">
+            The only way to be fully independent is to be incorporated as a company that is a direct registrant with the securities commissions like Mirador Corporation is. This way there are reduced biases from allegiances to service and product providers.
+          </p>
+        </div>
+				<div class="image-wrapper">
+					<img src={portImage.src} alt=""/>
+				</div>
+      </div>
+			<div class="grid-3 ben-wrapper">
+				<div class="ben-card-wrapper flex-v center v-padding">
+					<img src={benImage1.src} alt="" />
+					<h4>Dedicated & Ongoing Research</h4>
+					<div class="ben-overlay">
+						<p>
+							At Mirador, we operate independently, free from the biases of big institutional research. Large firms often prioritize underwriting and sales over objective analysis, leading to a disproportionate number of buy recommendations. Unlike them, we conduct our own research, ensuring unbiased insights and the strong results we’re known for.	
+						</p>
+					</div>
+				</div>
+				<div class="ben-card-wrapper flex-v center v-padding">
+					<img src={benImage2.src} alt="" />
+					<h4>Securing Your Future & Lifestyle Goals</h4>
+					<div class="ben-overlay">
+						<p>
+							Being small is our strength—it keeps us nimble and focused. We prioritize retirement income and generational wealth, not corporate rankings. Our long-term clients trust us through life’s stages, and we’re committed to protecting your wealth while celebrating your successes and securing your future.
+						</p>
+					</div>
+				</div>
+				<div class="ben-card-wrapper flex-v center v-padding">
+					<img src={benImage3.src} alt="" />
+					<h4>Company and Compensation Biases</h4>
+					<div class="ben-overlay">
+						<p>
+							Many firms appear independent but operate under big company umbrellas, influenced by corporate biases and hidden incentives. At Mirador, we’re different—our only priority is performance. We invest in the Mirador Income and Stability Fund alongside our clients, ensuring our success is directly tied to yours.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-1000">
+				<h2 class="smb-0">Investment Management, it's personal</h2>
+				<p class="smb-0">
+					Investment has become impersonal, designed for minimum contact between fund managers and investors. But how is it supposed to give you peace of mind knowing you’re just another number to a nameless manager?
+				</p>
+        <p>
+          To us, investment is personal. We want you to be able to speak directly to your investment manager, discuss your unique circumstances and needs, and rest assured that your money is invested accordingly. We treat you how we want to be treated ourselves. This is our commitment to you.
+        </p>
+        <a href="/contact">
+          <button class="button-secondary">GET IN TOUCH</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

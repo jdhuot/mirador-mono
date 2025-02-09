@@ -1,0 +1,69 @@
+---
+import HamburgerMenu from "./HamburgerMenu.jsx";
+
+import { sanityClient } from "../lib/sanity.js";
+
+const query = `*[_type == "category"] {
+  title,
+  slug
+}`;
+
+const categories = await sanityClient.fetch(query);
+
+const categoryLinks = categories.map((category:any) => ({
+  title: category.title,
+  link: `/${category.slug.current}`,
+}));
+
+const menuItems = [
+  { title: "Home", link: "/" },
+  { 
+    title: "Our Services", 
+    link: "#", 
+    submenu: [
+      { title: "Investment Management", link: "/investment-management" },
+      { title: "Wealth Advisory Services", link: "/wealth-advisory-services" },
+    ],
+  },
+  { title: "Portfolio Approach", link: "/our-approach" },
+  {
+    title: "Our Team",
+    link: "/our-team",
+  },
+  {
+    title: "Knowledge Base",
+    link: "#",
+    submenu: [...categoryLinks],
+  },
+  { title: "Contact", link: "/contact" },
+];
+
+---
+
+<nav class="navbar">
+  <div class="navbar-wrapper">
+    <a href="/" class="logo">
+      <img src="/logo_blue_mirador.png" alt="Mirador Corp Logo" class="logo-image" />
+    </a>
+
+    <ul class="desktop nav-links">
+      {menuItems.map((item) => (
+        <li class={item.submenu ? "dropdown" : ""}>
+          <a href={item.link}>{item.title} {item.submenu && <span>▾</span>}</a>
+          {item.submenu && (
+            <ul class="dropdown-menu">
+              {item.submenu.map((subItem) => (
+                <li><a href={subItem.link}>{subItem.title}</a></li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+
+    <!-- mobile -->
+    <div class="tablet">
+      <HamburgerMenu menuItems={menuItems} client:load />
+    </div>
+  </div>
+</nav>

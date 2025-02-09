@@ -1,0 +1,346 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.jsx';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+
+import penImage from '../assets/financial-planning/financial-planning.jpg';
+import retirementImage from '../assets/retirement-planning/retirement.jpg';
+import timeImage from '../assets/retirement-planning/time.jpg';
+import checkImage from '../assets/retirement-planning/check.jpg';
+import shakeImage from '../assets/financial-planning/shake.jpg';
+import savingImage from '../assets/financial-planning/saving.jpg';
+
+
+const tabItems = [
+    {
+      title: "Longevity​",
+      content: `
+				<p>
+          Advancements in healthcare and living standards have substantially increased life expectancy. As men and women are expected to live longer than previous generations this means that one’s capital will have to last longer to fund cash flows further into the future. Your retirement plan needs to span several decades and needs to ensure that you do not outlive your assets.
+        </p>
+					`,
+    },
+    {
+      title: "Desired Lifestyle",
+      content: `
+				<p>
+          Desired lifestyle includes not only your basic living expenses but also all the activities and extras that you would like to enjoy during your retirement years.  In addition to wealth accumulation, your retirement plan develops a strategy to achieve consistent and reliable income to ensure that you have the resources required to fund your desired lifestyle.
+        </p>
+        <p>
+          This may mean striking a balance between present enjoyment and future security. Retirement planning is about ensuring financial preparations are in place now to enhance your lifestyle in retirement. This balanced approach fosters financial security and freedom, enabling you to make the most of your post-work years.
+        </p>
+					`,
+    },
+    {
+      title: "Inflation",
+      content: `
+				<p>
+          Inflation erodes the purchasing power of money over time.  It can have a significant effect on after-tax cash available to meet your lifestyle needs as you begin nearing retirement.
+        </p>
+        <p>
+          Retirement planning incorporates strategies to combat its effects, ensuring that accumulated funds can support your desired lifestyle and financial needs throughout retirement.
+        </p>
+					`,
+    },
+    {
+      title: "Income Sources",
+      content: `
+				<p>
+          Diverse income streams throughout retirement are optimal. Pension plans are a key part of retirement income for some.  Understanding company and government sponsored plans is an essential part of retirement planning, including assessing vesting periods, contribution rates and survivor benefits.   Government social assistance programs like the Canada Pension Plan (CPP) and Old Age Security (OAS) are also a key part of retirement income for some and it is important to analyse potential strategies to optimize the benefits (such as deferring the start date and splitting the benefit with one’s spouse).
+        </p>
+        <p>
+          Investment income is also a significant contributor to retirement income for many so factors like time horizon, risk tolerance and timing of cashflow requirements are also important considerations.
+        </p>
+					`,
+    },
+    {
+      title: "Market Risk, Timing of Drawdown, and Investment Strategies",
+      content: `
+				<p>
+          Retirement planning involves a careful assessment of your risk tolerance and investment personality, time horizon and cash needs from your family’s consolidated investment portfolio. It includes ensuring you are appropriately diversified and have strategies in place to weather market fluctuations. At Mirador Corporation, we take care of all of this for you. 
+        </p>
+        <p>
+          When you are relying on your investment portfolio to provide cash flow to fund your lifestyle, the following factors can have a material impact on the ability of the investment portfolio to last throughout retirement years:  a) rate of withdrawal; b) market fluctuations and the average rate of return realized; c) the order that the rate of returns are realized; and d) Portfolio drawdown.
+        </p>
+        <p>
+          Mirador cannot guarantee future performance of your portfolio.  However, we understand that capital preservation, reducing drawdown and having sustainable income are critical. The Mirador Triopay programs, which can only be owned by clients of Mirador, address all these factors. The Canadian program has had a 7% or better distribution for several years now and has robust risk management strategies in place to protect investments and retirement income, mitigating the impact of unexpected market fluctuations.
+        </p>
+        <p>
+          By investing in Triopay, you can ensure you are adequately managing your risk in even the smallest of accounts!  Hire Mirador to manage your portfolio – let us worry about the markets so you can sleep at night.
+        </p>
+					`,
+    },
+    {
+      title: "Emergency Funds",
+      content: `
+				<p>
+          Establishing and maintaining emergency funds is a foundational principle in financial planning for retirement. These funds serve as a financial safety net, providing individuals with the means to address unexpected expenses or a reduction in cashflow due to health challenges or other factors, without derailing their long-term financial goals. The size of emergency fund varies based on individual circumstances, with factors such as health, home ownership, and family obligations.  Having a clear understanding of potential emergency scenarios aids in setting realistic savings goals. 
+        </p>
+					`,
+    },
+    {
+      title: "Current Financial Situation",
+      content: `
+				<p>
+          A critical starting point in retirement planning is a thorough assessment of current income sources and expenses, including both essential and discretionary spending.  Effectively managing debt is a pivotal aspect, with individuals taking stock of outstanding loans, credit cards and other liabilities.  Developing a plan to pay down high-interest debit before retirement significantly contributes to long-term financial stability as well as peace of mind.
+        </p>
+					`,
+    },
+    {
+      title: "Healthcare Costs",
+      content: `
+				<p>
+          The likelihood of healthcare costs increases as you age, and an effective retirement plan incorporates strategies to ensure there are resources available to cover these costs throughout your retirement years.
+        </p>
+					`,
+    },
+  ];
+
+  const tabItems2 = [
+    {
+      title: "Registered Retirement Savings Account (RRSP)",
+      content: `
+        <p>
+          RRSP’s are a tax-effective way to save for retirement. Allowable contributions are calculated based on a % of your earned income. You receive a deduction for the amount contributed to your RRSP each year and the income earned within an RRSP is not subject to tax.   The compound effect of this tax deferral can have a significant positive impact on your overall wealth.
+        </p>
+      `
+    },
+    {
+      title: "Tax Free Savings Account (TFSA)",
+      content: `
+        <p>
+          TFSA’s are another tax-effective way to save for the future. While you don’t receive a deduction for amounts contributed to a TFSA, all amounts earned within the TFSA and any withdrawals from a TFSA are not subject to tax. The compound effect of tax savings can also have a significant benefit to your overall financial picture.
+        </p>
+      `
+    },
+    {
+      title: "Employer sponsored Retirement Plans",
+      content: `
+        <p>
+          Because there is often employer matching of your contributions, pension plans can play an important part in your wealth building.  Then, employees often have the ability to transfer amounts from their employer sponsored pension plans to a Locked In Retirement Account (LIRA). While LIRAs have restrictions as to when funds can be withdrawn from the plan, transferring from a company pension plan to a LIRA allows you to gain control of your investments and have them managed by the advisor of your choice.
+        </p>
+      `
+    },
+    {
+      title: "First Home Savings Account (FHSA)",
+      content: `
+        <p>
+          This is a new investment vehicle created by the government to help Canadians save for their first home.   The FHSA has benefits of both the RRSP and TFSA:  like RRSP’s, contributions to an FHSA are tax deductible and like TFSAs, income and gains inside of an FHSA as well as withdrawals are not subject to tax. 
+        </p>
+        <p>
+          Owning your own home and the value it often creates has been a significant part of many people’s overall wealth creation over the long-term.  Later in life, the investment capital created by selling one’s home and downsizing can be a significant source of income to fund your final years. In certain instances, a reverse mortgage may also make sense for a source of cash in one’s later years.  The FHSA could play a crucial role in helping to build up wealth through home ownership, thus making these other strategies available to you, and still allowing you to contribute to the other listed retirement vehicles.
+        </p>
+      `
+    },
+    {
+      title: "Registered Education Savings Plan (RESP)",
+      content: `
+        <p>
+          In today’s environment, there is an ever increasing importance for your children to have a post secondary education to remain competitive and give them an advantage in the employment market. The cost of education has escalated in recent years, and it has also become more difficult to get admitted into various programs, resulting in students having resort to alternative and costly ways to achieve their post secondary degree. As a result, the RESP is playing an increasingly important role in ensuring your children or grandchildren have sufficient funds for their education without depleting your retirement savings.
+        </p>
+      `
+    },
+    {
+      title: "Government Canada Pension Plan (CPP) and Old Age Security (OAS)",
+      content: `
+        <p>
+          CPP and OAS can be a significant source of income for some in their retirement years.   With Mirador’s holistic approach to your overall wealth management, we can help you determine when to start taking CPP and OAS, whether it makes sense to split CPP with your spouse and ways to minimize the OAS claw back, which will help increase your overall wealth.
+        </p>
+      `
+    },
+  ]
+
+  const tabItems3 = [
+    {
+      title: "Financial Assessment",
+      content: `
+        <p>
+          If you are starting to plan for retirement later in your career, you should begin with a thorough assessment of your financial affairs. This involves evaluating existing assets, outstanding debts, and current income. They will become the basis for your strategic financial plan.
+        </p>
+        <p>
+          Addressing outstanding debt is crucial for late starters and involves strategies to expedite debt repayment to free up more funds for savings and investment in the later stages of your career.
+        </p>
+      `
+    },
+    {
+      title: "Catch-up Contributions",
+      content: `
+        <p>
+          Many retirement plans offer catch-up contribution options for individuals aged 50 and above.  This may provide an opportunity to bolster savings in the years leading up to retirement. Taking advantage of these catch-up provisions can significantly enhance financial preparedness.  In the case of an employer sponsored plan with a matching provision, this will compound the benefit of a catch-up provision.
+        </p>
+      `
+    },
+    {
+      title: "Lifestyle Adjustments",
+      content: `
+        <p>
+          If you are late to retirement planning, you may need to adjust your expectations regarding retirement lifestyle. This involves a realistic assessment of your desired standard of living in retirement and making corresponding adjustments to current spending habits. This shift can help align your financial resources with your retirement goals.
+        </p>
+        <p>
+          Considering post-retirement employment as a strategy to supplement income becomes very relevant, including part-time work, consulting, or pursuing entrepreneurial ventures.  Planning for a phased retirement with continued income streams contributes to financial security.
+        </p>
+      `
+    },
+    {
+      title: "Investment Strategies",
+      content: `
+        <p>
+          If you are late to start retirement planning, it is even more important to minimize rate of withdrawal and portfolio drawdown.  Mirador’s Triopay programs focus on capital preservation, reducing drawdown and having sustainable income so it will be especially helpful.
+        </p>
+      `
+    },
+  ]
+
+---
+
+<Layout 
+  title="Retirement Planning" 
+  description="Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."
+  ogImageUrl={retirementImage.src}
+>
+	<section>
+		<div class="relative container">
+      <div class="cb-grad v-padding">
+        <img src={heroBg.src} class="services-hero-bg" />
+        <div class="tac mw-900">
+          <div class="services-hero-section">
+            <div class="hero-text flex-v center lrg">
+              <h4>Retirement Planning in Calgary</h4>
+              <div class="hr"></div>
+              <h1>Setting you up for a prosperous financial future</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section class="v-padding">
+    <div class="container">
+      <div class="grid-2 forty-sixty lg center">
+        <div class="image-wrapper">
+          <img src={retirementImage.src} alt=""/>
+        </div>
+        <div class="flex-v">
+          <h4>Planning for Retirement: Secure Your Future & Live Your Dream</h4>
+          <p class="smb-0">
+            Retirement should be a time to relax and enjoy life without financial worries. Instead of seeing it as the end of work, think of it as the start of a new chapter.
+          </p>
+          <p class="smb-0">
+            Planning ahead ensures peace of mind, knowing your finances are secure. Along with preserving capital and generating stable income, we offer retirement planning to help you maintain your ideal lifestyle.
+          </p>
+          <p>
+            Retirement looks different for everyone. At Mirador, we start by understanding your vision—whether it’s dining out, traveling, or leaving a legacy—then determine the after-tax cash flow needed to make it happen.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section class="smb-6">
+    <div class="container">
+      <div class="grid-2 sixty-forty lg center">
+        <div class="flex-v">
+          <h4>Are You Struggling With…</h4>
+          <ul>
+            <li>
+              Will I be able to maintain the same lifestyle after retirement?
+            </li>
+            <li>
+              Will I have enough money for healthcare?
+            </li>
+            <li>
+              Should I delay my retirement?
+            </li>
+            <li>
+              Do I need to continue working part-time during retirement?
+            </li>
+            <li>
+              Will I deplete my savings in retirement?
+            </li>
+            <li>
+              When is the best time to take CPP?
+            </li>
+            <li>
+              What taxes do I have to pay when I retire?
+            </li>
+          </ul>
+          <p class="smb-0">
+            We can help with these and any other concerns about retirement.  With careful retirement planning and guidance from professionals, we can help to alleviate your financial fears and concerns about retiring.
+          </p>
+        </div>
+        <div class="image-wrapper">
+          <img src={timeImage.src} alt=""/>
+        </div>
+      </div>
+		</div>
+	</section>
+
+	
+	<section id="fund" class="fund-section smb-6">
+		<div class="container">
+      <div class="tac mw-1000 flex-v center">
+        <h3 class="tac">Factors that Affect Retirement Planning</h3>
+        <p class="smb-4">
+          Retirement is a multifaceted process influenced by various factors. Understanding these factors and how they may affect the outcome of your goals is crucial for creating a comprehensive financial plan with strategies that can adapt to your dynamic circumstances and desired retirement date.
+        </p>
+      </div>
+			<Tabs items={tabItems} alwaysAccordion={true} client:load />
+		</div>
+	</section>
+
+  <section id="fund" class="fund-section">
+		<div class="container">
+      <div class="tac mw-1000 flex-v center">
+        <h3 class="tac">Vehicles to Help Save for Retirement</h3>
+        <p class="smb-4">
+          In Canada, there are several vehicles available to help individuals save for retirement. Contributions to these retirement vehicles offer tax advantages and the benefits of these tax advantages may compound greatly over time:
+        </p>
+      </div>
+			<Tabs items={tabItems2} alwaysAccordion={true} client:load />
+		</div>
+	</section>
+
+  <section class="v-padding">
+    <div class="container">
+      <div class="grid-2 forty-sixty lg center">
+        <div class="image-wrapper">
+          <img src={checkImage.src} alt=""/>
+        </div>
+        <div class="flex-v">
+          <h4>Maximizing Retirement Contributions & Smart Withdrawal Strategies</h4>
+          <p class="smb-0">
+            At Mirador, we help clients maximize retirement savings by tailoring strategies to their unique financial situation. We advise on where to contribute first, funding sources, and which spouse should contribute. When it’s time to withdraw, we guide you through the complexities to optimize timing and tax efficiency.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section id="fund" class="fund-section smb-6">
+		<div class="container">
+      <div class="tac mw-1000 flex-v center">
+        <h3 class="tac">Is It Too Late to Start Planning for Retirement?</h3>
+        <p class="smb-4">
+          The question of whether it’s too late to start planning for retirement is a common concern, especially for those approaching retirement age.  While earlier planning offers more time for wealth accumulation, it’s never too late to start planning for your retirement.
+        </p>
+      </div>
+			<Tabs items={tabItems3} alwaysAccordion={true} client:load />
+		</div>
+	</section>
+ 
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+					Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.
+				</p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

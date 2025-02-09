@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.jsx';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+
+import riskImage from '../assets/personal-risk-management/risk.jpg';
+
+
+const tabItems = [
+    {
+      title: "Emergency Funds",
+      content: `
+				<p>
+          Establishing and maintaining emergency funds is a foundational principle in retirement planning.  Even the best lived life can end up needing to deal with an emergency that requires substantial funds. 
+        </p>
+        <p>
+          An emergency fund serves as a financial safety net, providing individuals with the means to address unexpected expenses or a reduction in cashflow due to health challenges or other factors, without derailing their long-term financial goals.  The size of emergency fund varies based on individual circumstances, with factors such as health, homeownership, and family obligations. Having a clear understanding of potential emergency scenarios aids in setting realistic savings goals.
+        </p>
+					`,
+    },
+    {
+      title: "Market Risk, Timing of Drawdown and Investment Strategies",
+      content: `
+				<p>
+					Retirement planning involves a careful assessment of your risk tolerance and investment personality, time horizon and cash needs from your family’s consolidated investment portfolio. It includes ensuring you are appropriately diversified and have strategies in place to weather market fluctuations. At Mirador Corporation, we take care of all of this for you. 
+        </p>
+        <p>
+          When you are relying on your investment portfolio to provide cash flow to fund your lifestyle, the following factors can have a material impact on the ability of the investment portfolio to last throughout retirement years:  a) rate of withdrawal; b) market fluctuations and the average rate of return realized; c) the order that the rate of returns are realized; and d) Portfolio drawdown.
+        </p>
+        <p>
+          Mirador cannot guarantee future performance of your portfolio.  However, we understand that capital preservation, reducing drawdown and having sustainable income are critical.  The Mirador Triopay programs, which can only be owned by clients of Mirador, addresses all of these factors. It has had a 7% or better distribution for several years now and has robust risk management strategies in place to protect investments and retirement income mitigating the impact of unexpected market fluctuations.
+        </p>
+        <p>
+          By investing in units of Triopay, you can ensure you are adequately managing your risk in even the smallest of accounts!  Hire Mirador to manage your investment portfolio – let us worry about the markets so you can sleep at night.
+        </p>
+					`,
+    },
+    {
+      title: "Healthcare Costs",
+      content: `
+				<p>
+          The likelihood of healthcare costs increases as you age. And what if you or someone close to you faces a serious illness?  An effective plan incorporates strategies to ensure there are resources available to cover these potential costs throughout your retirement years. 
+        </p>
+					`,
+    },
+  ];
+
+---
+
+<Layout 
+  title="Personal Risk Management" 
+  description="Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."
+  ogImageUrl={riskImage.src}
+>
+	<section>
+		<div class="relative container">
+      <div class="cb-grad v-padding">
+        <img src={heroBg.src} class="services-hero-bg" />
+        <div class="tac mw-900">
+          <div class="services-hero-section">
+            <div class="hero-text flex-v center lrg">
+              <h1>Personal Risk Management</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section class="v-padding">
+    <div class="container">
+      <div class="grid-2 sixty-forty lg center">
+        <div class="flex-v">
+          <h4>Beyond Investments</h4>
+          <p class="smb-2">
+            Managing risk goes beyond investments—it includes personal risks that impact your financial goals. A solid plan adapts to changing circumstances.
+          </p>
+          <h5 class="smb-0">Longevity</h5>
+          <p class="smb-2">
+            With longer life expectancy, your retirement savings need to last for decades. We plan conservatively to ensure you don’t outlive your assets.
+          </p>
+          <h5 class="smb-0">Inflation</h5>
+          <p>
+            Inflation reduces purchasing power over time. We model different inflation scenarios and use strategies to protect your savings so you can maintain your lifestyle in retirement.
+          </p>
+        </div>
+        <div class="image-wrapper">
+          <img src={riskImage.src} alt=""/>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section id="fund" class="fund-section smb-6">
+		<div class="container">
+      <div class="tac mw-1000 flex-v center">
+        <h3 class="tac smb-3">Protecting Your Retirement: Managing Market Risk, Emergencies & Healthcare Costs</h3>
+      </div>
+			<Tabs items={tabItems} alwaysAccordion={true} client:load />
+		</div>
+	</section>
+  
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+					If you are interested in learning more about Mirador Corporation, and how we can help you manage your personal risk management then get in touch via the button below today.
+        </p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

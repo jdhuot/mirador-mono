@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.jsx';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+
+import penImage from '../assets/financial-planning/financial-planning.jpg';
+import shakeImage from '../assets/financial-planning/shake.jpg';
+import savingImage from '../assets/financial-planning/saving.jpg';
+
+
+const tabItems = [
+    {
+      title: "Your Strategic Partner",
+      content: `
+				<p>
+					We are portfolio management experts and financial strategists with a vast amount of experience and education in wealth advisory and planning. We are committed to comprehensively understanding your distinct financial objectives, risk tolerance and other behavioural finance attributes and your aspirations.  By developing your financial plan, we will work closely with you to ensure that you make smart financial decisions that evolve to meet the demands of your life and the market.   We have your best interests at heart.
+        </p>
+					`,
+    },
+    {
+      title: "Educators and Financial Advisors",
+      content: `
+				<p>
+          As investment managers with financial planning expertise, we empower you with the knowledge and resources required to navigate any complex financial landscape.   We provide insights into investments, tax implications and retirement planning, fostering financial literacy and informed decision-making so you can achieve your financial and lifestyle goals faster.
+        </p>
+        <p>
+          Beyond numbers, we can provide ethical guidance, emphasizing responsible financial behaviour and ensuring that you are not just accumulating wealth but doing so in a manner that aligns with your values and principles.
+        </p>
+					`,
+    },
+    {
+      title: "Comprehensive Financial Planning",
+      content: `
+				<p>
+          We adopt a holistic approach to wealth management which considers all facets of your financial life. From short-term budgeting to long-term retirement planning, we create comprehensive financial plans tailored to your unique circumstances and aspirations.
+        </p>
+        <p>
+          In a city with an economy sensitive to global and regional factors, we stay abreast of market trends and economic forecasts. We leverage this insight to position you advantageously, whether in investment, wealth management, tax planning, or retirement strategies.
+        </p>
+        <p>
+          When it comes to wealth management, it is not a one-time endeavour. As our client, we can also act as your financial advisors on a per-need basis. We provide ongoing support and regularly monitoring of your financial plans to ensure we remain aligned with your evolving goals and the city’s economic landscape.
+        </p>
+					`,
+    },
+  ];
+
+  const tabItems2 = [
+    {
+      title: "Income Management",
+      content: `
+				<p>
+          Effective management of income involves assessing current income sources, identifying potential future streams, and creating strategies to optimize income for both short-term needs and long-term goals.
+        </p>
+        <p>
+          This income can come from different sources, each with its own tax implications. A financial planner will assist in developing tax-efficient withdrawal strategies to minimize tax burdens on income which can have a significant impact on your overall wealth.
+        </p>
+					`,
+    },
+    {
+      title: "Lifestyle Planning and Understanding your cash flow needs",
+      content: `
+				<p>
+          An important first step to any financial plan is understanding how much money you require each year to live the lifestyle of your dreams.  Financial planning includes budgeting for these lifestyle aspirations and ensuring individuals can enjoy their desired lifestyle and activities without compromising their financial stability.
+        </p>
+					`,
+    },
+    {
+      title: "Capital Preservation",
+      content: `
+				<p>
+          Preserving investment capital is a major priority, especially during retirement.   At Mirador, we recognize the importance of balancing the need for income with the need for capital preservation and this is why we have created the Mirador Triopay Canadian and U.S. programs.
+        </p>
+					`,
+    },
+    {
+      title: "Ongoing Financial Monitoring",
+      content: `
+				<p>
+          Financial planning is not a one-time event.  The plan should be regularly monitored and adjusted to ensure it remains aligned with individual goals as well as current market conditions and financial strategy.
+        </p>
+					`,
+    },
+  ];
+
+---
+
+<Layout 
+  title="Financial Planning" 
+  description="Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."
+  ogImageUrl={penImage.src}
+>
+	<section>
+		<div class="relative container">
+      <div class="cb-grad v-padding">
+        <img src={heroBg.src} class="services-hero-bg" />
+        <div class="tac mw-900">
+          <div class="services-hero-section">
+            <div class="hero-text flex-v center lrg">
+              <h4>Financial Planning in Calgary</h4>
+              <div class="hr"></div>
+              <h1>Helping You Strategize, Planning for your Financial Peace of Mind</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section class="v-padding">
+    <div class="container">
+      <div class="grid-2 forty-sixty lg center">
+        <div class="image-wrapper">
+          <img src={penImage.src} alt=""/>
+        </div>
+        <div class="flex-v">
+          <h4>Holistic Wealth Management: Investing & Financial Planning in Harmony</h4>
+          <p class="smb-0">
+            At Mirador, we focus on preserving wealth and generating stable, long-term investment income. As part of our wealth advisory services, we also provide financial planning, ensuring a holistic approach to growing and protecting your wealth.
+          </p>
+          <p class="smb-0">
+            Many financial planners and tax advisors lack insight into investment portfolios, and investment managers may not consider the full financial picture. We bridge that gap, handling both aspects to provide well-informed, coordinated advice.
+          </p>
+          <p>
+            We tailor financial plans to your unique needs, working with your tax and legal advisors when necessary. Whether it’s budgeting or retirement planning, we offer the same level of care we use for our own investments—giving you peace of mind from an independent firm.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+
+	
+	<section id="fund" class="fund-section">
+		<div class="container">
+      <div class="tac mw-1000 flex-v center">
+        <h3 class="tac">Our Role as Your Financial Planner: Supporting Your Unique Financial Situation</h3>
+        <p class="smb-4">
+          The traditional notions of financial management do not apply to us.  We adopt a holistic approach to wealth management.  In addition to managing your investment portfolio, we address your whole financial plan which considers all facets of your financial life so that you reach your financial goals faster.    From short-term budgeting to long-term retirement planning, we create a comprehensive financial plan tailored to your unique circumstances and aspirations.
+        </p>
+      </div>
+			<Tabs items={tabItems} alwaysAccordion={true} client:load />
+		</div>
+	</section>
+
+  <section class="v-padding">
+    <div class="container">
+      <div class="grid-2 seventy-thirty lg center">
+        <div class="flex-v not-center">
+          <h4>The Importance of Consulting a Financial Advisor in Calgary Alberta</h4>
+          <p class="smb-0">
+            Financial planning is an essential component of personal and economic well-being, providing you with a strategic framework to navigate life’s financial complexities.  Make informed decisions with Mirador on your side.
+          </p>
+          <p>
+            The strategic roadmap we develop will help you achieve your unique financial goals.   Whether it’s saving for major life events, funding education, or planning for retirement, a well-crafted financial plan provides direction and purpose.   It also contributes to overall financial resilience, ensuring you have emergency funds and risk mitigation strategies to protect you and your family from the unexpected, providing you a safety net during times of uncertainty and allowing you to prosper.
+          </p>
+        </div>
+        <div class="image-wrapper">
+          <img src={shakeImage.src} alt=""/>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section id="fund" class="fund-section smb-6">
+		<div class="container">
+      <div class="tac mw-1000 flex-v center">
+        <h3 class="tac">Key Components of Financial Planning</h3>
+        <p class="smb-4">
+          Financial planning is a dynamic process that involves various components crucial for achieving financial goals and ensuring long-term stability.
+        </p>
+      </div>
+			<Tabs items={tabItems2} alwaysAccordion={true} client:load />
+		</div>
+	</section>
+
+  <section class="smb-6">
+    <div class="container">
+      <div class="grid-2 thirty-seventy lg center">
+        <div class="image-wrapper">
+          <img src={savingImage.src} alt=""/>
+        </div>
+        <div class="flex-v">
+          <h4>Wealth Accumulation and Preservation</h4>
+          <p class="smb-2">
+            Wealth accumulation and preservation is an instrumental part of any financial plan, along with implementing risk management strategies.  That’s why Mirador’s holistic approach to managing your overall wealth works so well.
+          </p>
+          <h4>Your Partner in Wealth Management and Financial Planning</h4>
+          <p class="smb-0">
+            At Mirador Corporation, we help you navigate complex financial landscapes with a deep understanding of markets and wealth management.
+          </p>
+          <p class="smb-0">
+            Beyond managing your investments, we take a holistic approach to your financial plan, considering all aspects of your life, including your family’s needs. Our tailored strategy ensures nothing is overlooked, whether you're buying a home or planning for retirement.
+          </p>
+          <p>
+            For expert financial guidance, connect with a portfolio manager at Mirador in Calgary. With our support, you can focus on life confidently, knowing your financial future is in good hands.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+  
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+					Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.
+				</p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

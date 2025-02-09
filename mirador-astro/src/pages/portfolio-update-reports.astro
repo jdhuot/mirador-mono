@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import { sanityClient } from "../lib/sanity.js";
+import PortableTextRenderer from "../components/PortableTextRenderer.jsx";
+import fallbackImage from "../assets/fallback.jpg";
+
+const query = `*[_type == "blog" && category->title == "Quarterly Reports"] | order(publishedAt desc) {
+  title,
+  slug,
+  excerpt[]{
+    ...
+  },
+  "imageUrl": featuredImage.asset->url,
+  category->{title},
+  body[]{
+    ...,
+    _type == "image" => {
+      "url": asset->url,
+      alt
+    }
+  },
+  publishedAt,
+  "createdAt": _createdAt
+}`;
+
+const posts = await sanityClient.fetch(query);
+
+---
+
+<Layout 
+  title="Our Team"
+>
+  
+	<section class="v-padding our-team-main blog-card-wrapper">
+    <div class="container">
+      <div class="grid-2 forty-sixty lg center smb-6">
+        <div class="flex-v">
+          <h4>The Mirador</h4>
+          <h1>Portfolio Update Reports</h1>
+        </div>
+        <div>
+          <p>
+            For 30 years, Mirador has provided quarterly portfolio updates. In the past, they were long and filled with complex charts, but we realized most clients didn’t find them useful. So, we now keep them brief—one to two pages—focusing on what clients actually want: key updates on the economy, markets, Triopay programs, and Mirador.
+          </p>
+          <p>
+            As Bloomberg Professional Terminal subscribers since 2009, we have plenty of data and insights. If you’d like a deeper dive, we’re happy to meet and share more. In the meantime, check out our latest update and let us know your thoughts!
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3 lg center">
+        {posts && posts.length > 0 && posts.map((post:any) => (
+          <a class="flex-v blog-card" href={`/blog/${post.slug.current}`}>
+            <div class="blog-card-image">
+              <img src={post.imageUrl ? post.imageUrl : fallbackImage.src} alt="" />
+            </div>
+            <h5 class="smb-0">{post.title}</h5>
+            {post.excerpt &&
+              <p class="clamp">
+                <PortableTextRenderer content={post.excerpt} />
+              </p>
+            }
+            {!post.excerpt &&
+              <div class="clamp">
+                <PortableTextRenderer content={post.body} />
+              </div>
+            }
+            <button class="button-primary sm">Read More</button>
+          </a>
+        ))}
+      </div>  
+      { (posts.length === 0 || !posts) &&
+        <div class="tac">
+          <h5>No posts found...</h5>
+        </div>
+      }
+
+		</div>
+	</section>
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+          Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.
+        </p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

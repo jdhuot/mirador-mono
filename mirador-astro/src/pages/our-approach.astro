@@ -1,0 +1,261 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.jsx';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+
+import graphImage from '../assets/our-approach/graph.jpg';
+import aiImage from '../assets/our-approach/ai.jpg';
+import treeImage from '../assets/our-approach/tree.jpg';
+
+
+const tabItems = [
+    {
+      title: "Technical Analysis",
+      content: `
+				<p>
+					Technical analysis focuses strictly on price and volume. It is used in portfolio management to evaluate and forecast future prices based on historical price and volume data. It relies on the idea that historical price movements and patterns can provide insights into potential future price trends.  History does not always repeat, but it often rhymes. Although Mirador’s focus is primarily on stability and income, modest price appreciation is a goal to maintain purchasing power in a world of persistent inflation. 
+				</p>
+        <p>
+          While the above described trend-following assumes that prices will continue in the same direction, mean reversion suggests that prices will often become ahead of themselves and then return to a historical average or mean. Portfolio managers using mean reversion strategies aim to capitalize on price reversal opportunities.
+        </p>
+					`,
+    },
+    {
+      title: "Neural Networks",
+      content: `
+				<p>
+        For around two decades we have been using Artificial Intelligence to optimize our technical analysis decisions. History rhymes but it does not repeat. Therefore, it is difficult to make good decisions based on the presumption that simple historic observations and trends will repeat. AI programs called Neural Networks sift through data like a massive brain, testing various combinations and parameters, helping to make decisions consistent with the current evolving data.
+				</p>
+					`,
+    },
+    {
+      title: "Quantitative Analysis",
+      content: `
+				<p>
+          Quantitative analysis is an investment approach that relies on mathematical and statistical methods to analyze financial markets and companies to make systematic investment decisions. It focuses on factors that can influence investments beyond just price alone, including things like revenue, earnings, cash flow, financial stability, consistency and predictability. 
+				</p>
+        <p>
+          The aim of quantitative analysis is to remove emotional biases and subjectivity by systematically utilizing numerical data of key financial metrics to discover market inefficiencies and generate results consistent with a given objective, which for Mirador’s Triopay approach is income with lower volatility.
+        </p>
+					`,
+    },
+    {
+      title: "Single Variable Backtest",
+      content: `
+				<p>
+          A single variable backtest is a type of performance evaluation for an investment or trading strategy that involves varying only one parameter or variable at a time while keeping all other factors constant. This type of backtesting is a simplified approach to understanding how changes in a specific factor impact the strategy’s historical performance.
+				</p>
+					`,
+    },
+    {
+      title: "Multivariable Backtests",
+      content: `
+				<p>
+          A multivariable backtest, also known as a multivariate backtest, is a sophisticated method of evaluating the historical performance of an investment or trading strategy by simultaneously varying multiple parameters or variables. 
+				</p>
+        <p>
+          Unlike a single variable backtest, which focuses on changing one parameter at a time while keeping others constant, a multivariable backtest explores the interplay and combined impact of several factors on the strategy’s overall performance.
+        </p>
+					`,
+    },
+    {
+      title: "Factor Optimizations",
+      content: `
+				<p>
+          Factor optimization involves the systematic adjustment of portfolio exposures to various factors to enhance returns, manage risk, or achieve specific investment objectives. Factors are characteristics or attributes that can influence the performance of investments. 
+				</p>
+        <p>
+          Factors important to the Triopay approach include many dividend metrics, numerous valuation factors such as the price to earnings ratio, as well as high impact factors like earnings momentum, surprise and revisions.
+        </p>
+        <p>
+          The process of factor optimization aims to strategically allocate investments based on these factors to achieve better risk-adjusted returns. The goal is to systematically exploit factors that have historically demonstrated a persistent impact on asset prices and dividends while managing risk effectively.
+        </p>
+					`,
+    },
+    {
+      title: "Overall Model Building with Factors",
+      content: `
+				<p>
+          Building an overall model with factors involves the systematic integration of various factors into a comprehensive framework for making investment decisions. This integrated approach aims to enhance the investment decision-making process by systematically incorporating a broad range of factors into the portfolio construction and optimization process.
+				</p>
+					`,
+    },
+    {
+      title: "Active Management",
+      content: `
+				<p>
+          At Mirador, we believe in active investment management, we actively monitor your investments and make regular adjustments to improve results. It requires continuous market research, performance analysis, and risk management. We make strategic shifts in asset allocation, adjust sector exposures, and employ dynamic strategies based on changing market conditions.  Great long term results are comprised of the compounding of a number of well-placed short term activities.
+				</p>
+					`,
+    },
+    {
+      title: "Risk Management",
+      content: `
+        <p>
+          While investment management typically focuses on generating returns, effective risk management is crucial to safeguard those returns. The importance of risk management cannot be overstated, especially at a time of your life when your investment strategy should shift away from high risk, high return towards stability, preservation and consistent investment income for retirement. 
+        </p>
+        <p>
+          The best way to make consistent returns is to reduce declines. To give you an example, if something happens like an unexpected market fluctuation and your investments drop 50% from $100,000 to $50,000, you will need to make 100% or $50,000, effectively doubling  your investment, just to get back to where you were. That’s stressful and not easy to accomplish. 
+        </p>
+        <p>
+          This can have a knock-on effect that can have a significant impact on your wealth and retirement investment income. In fact, it is one of the reasons why Mirador does not invest in volatile vehicles like cryptocurrency or venture type stocks. However, even the most conservative investments carry some sort of risk, making risk management important for all investors, regardless of risk level. Quality dividend stocks like the ones that dominate the Triopay programs tend to drop much less (approximately less than half of a market decline)  in adverse market conditions.  
+        </p>
+        <p>
+          Some investment managers manage risk by selling securities in a market downturn.  We don’t kill the geese which give the golden eggs (dividends) by selling our dividend stocks during a downturn. By strategically allocating assets across several asset classes and mitigating risks through vehicles like inverse ETFs, we work hard to safeguard your portfolio during market downturns and other uncertainties, so you can rest easy experiencing reduced declines and often still see positive returns during tumultuous times. 
+        </p>
+        <p>
+          Knowing exactly how to allocate assets and how to identify potential risks requires expert insights. That is why at Mirador, we allocate your assets and manage your risk so that you can weather any financial storm, and possibly even profit from it.
+        </p>
+        <p>
+          At Mirador Corporation, our investment management isn’t just a service; it’s a commitment to shaping your financial success. Whether you are seeking stability, income, or a personalized approach to wealth management, we are your dedicated partner in crafting a financial legacy that reflects your unique aspirations.
+        </p>
+        `
+    },
+    {
+      title: "Account Safety",
+      content: `
+        <p>
+          Mirador is a direct Registrant with the Alberta Securities Commission (ASC) and other Canadian jurisdictions under the Canadian Securities “Passport System”.  As such, we are held to the regulations set forth by the securities commission to ensure the security of your funds from corporate fraud or misuse and we are audited regularly to ensure our compliance.  Following these regulations, we have no direct access to your accounts and we do not handle cash, deposits or transfers directly.  Instead, RBC Investor Services (RBC IS) has been appointed as the custodian for Mirador accounts to hold your assets safely and  provide various deposit, transfer, reporting, and administrative services.  As a division of the Royal Bank, RBC IS is a very large and well managed corporation. 
+        </p>
+        <p>
+          RBC IS uses a trust structure for the client  accounts which effectively keeps anyone from using your capital for other purposes such as lending or capital market trading, which occurs extensively  in other custodial and investment firms that do not have this trust account structure.  Therefore, Mirador accounts are completely free of corporate misuse risk and in the unlikely event that RBC did fall into bankruptcy, the appointed receiver would transfer the trust accounts to another organisation for a relatively seamless continuity of security and management.  
+        </p>
+        <p>
+          In addition to the security of your assets described above, the security regulators have detailed requirements to ensure that Mirador’s recommendations meet strict investor suitability requirements. The foundation of the suitability requirements are the Know Your Client (KYC) guidelines.  To ensure that Mirador and its advisors provide suitable advice we need to first ensure that we know a client or prospective client well enough.  Factors of the KYC guidelines that we need to know include such things as:
+        </p>
+        <ul>
+          <li>
+            Age
+          </li>
+          <li>
+            Family Status
+          </li>
+          <li>
+            Occupation
+          </li>
+        </ul>
+        <p>
+          At Mirador Corporation, we have a deep understanding of various financial aspects and market dynamics which allows us to help you navigate complex financial landscapes and stay abreast of the latest market trends and regulations.
+        </p>
+        <p>
+          As our client, you can turn to us for guidance on your investment decisions and financial plan. We consider all aspects of your financial life, including budgeting, debt management, investment planning, and risk mitigation. This comprehensive tailor-made approach ensures that no crucial element is overlooked in the pursuit of financial stability, and that your financial plan aligns precisely with your needs and aspirations – whether that’s buying a home or planning for retirement.
+        </p>
+        <p>
+          If you would like to effectively plan for your financial future, speak to a portfolio manager at Mirador Corporation in Calgary and join our investment firm today. Knowing that a qualified professional is overseeing and optimizing your financial affairs, allows you to focus on your life with confidence knowing that you are on the path to financial success.
+        </p>
+        <br/>
+        <p>
+          For more information please reach out to us through our quick contact form.
+        </p>
+        <a href="/contact">
+          <button class="button-secondary">GET IN TOUCH</button>
+        </a>
+      `
+    }
+  ];
+
+---
+
+<Layout 
+  title="Our Approach" 
+  description="Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."
+  ogImageUrl={graphImage.src}
+>
+	<section>
+		<div class="relative container v-padding">
+			<img src={heroBg.src} class="services-hero-bg" />
+			<div class="tac mw-900">
+				<div class="services-hero-section">
+					<div class="hero-text flex-v center lrg">
+						<h4>Our Portfolio Approach</h4>
+						<h1>A non-mainstream, yet back-to-basics investment approach</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+  <section>
+    <div class="container">
+      <div class="hr"></div>
+    </div>
+  </section>
+	<section class="v-padding">
+    <div class="container">
+      <div class="grid-2 lg center">
+        <div class="image-wrapper">
+          <img src={graphImage.src} alt=""/>
+        </div>
+        <div class="flex-v mw-500 not-center">
+          <h4>Data-Driven Investing for Lasting Stability</h4>
+          <p class="smb-0">
+            Our investment approach prioritizes stability with income, avoiding market fads and emotional biases. Research shows investors often make emotional decisions and justify them with logic. At Mirador, we rely on data-driven analysis, using diverse testing methods to navigate dynamic markets and make informed, objective investment choices.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+	<section id="fund" class="fund-section smb-6">
+		<div class="container">
+      <div class="tac mw-1000 flex-v center">
+        <h3 class="tac">What Goes Into Our Investment Process</h3>
+        <p class="smb-4">
+          Mirador means "a tower or balcony with a wide view"—a perfect reflection of our investment approach. Grounded in behavioral finance, we recognize that emotions often hinder investing success. Our solution? A systematic, data-driven strategy that provides a clear, unbiased view of markets and companies. Just the facts. 
+        </p>
+      </div>
+			<Tabs items={tabItems} alwaysAccordion={true} client:load />
+		</div>
+	</section>
+  <section class="">
+    <div class="container">
+      <div class="grid-2 lg center">
+        <div class="flex-v">
+          <h4>We Have Been Using AI Since the ‘90s</h4>
+          <p>
+            We don’t shy away from embracing cutting-edge technology like AI. In fact, we have been using AI to help guide and optimize our investment strategies since the ‘90s. Our commitment to staying ahead involves the deployment of neural network research, where artificial intelligence is employed to analyze complex patterns and trends in financial markets. This forward-looking approach positions us at the forefront of innovation, enhancing our ability to make informed decisions in an ever-evolving landscape.
+          </p>
+          <a href="/contact">
+            <button class="button-secondary">BOOK A CALL</button>
+          </a>
+        </div>
+        <div class="image-wrapper">
+          <img src={aiImage.src} alt=""/>
+        </div>
+      </div>
+		</div>
+	</section>
+  <section class="v-padding">
+    <div class="container">
+      <div class="grid-2 forty-sixty lg center">
+        <div class="image-wrapper">
+          <img src={treeImage.src} alt=""/>
+        </div>
+        <div class="flex-v">
+          <h4>Fees</h4>
+          <p class="smb-0">
+            One way Mirador maintains its unbiased approach is via a unique fee structure.  Clients are charged one fee that covers all custodial, portfolio management and wealth advisory services (if requested).  Unlike any other firm we know of, at Mirador the transaction charges are not included in the buys and sells of the Triopay programs.  Instead, Mirador pays for these.  As a firm dedicated to active management, these costs can be substantial. It is important to know that transaction costs will not reduce your portfolio results at Mirador the way they might at most other firms.
+          </p>
+          <p class="smb-0">
+            We do not have a published fee schedule.  Because there are certain non-variable costs to managing any account of any size, our fees are lower for larger accounts.  And, the fee we agree upon will be based on the ongoing service level you expect.  If there are no financial planning or ongoing advisory services the fee will be less than our full service offering.
+          </p>
+          <p>
+            That being said, all clients will receive monthly statements from RBC IS and quarterly statements from Mirador. Mirador provides an enhanced annual reporting package covering results and tax information.  And, all clients receive the quarterly portfolio and investment fund manager’s commentary and graphic details of the Tripay contents, results and activities.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+					Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.
+				</p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

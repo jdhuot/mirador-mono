@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.jsx';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+
+import budgetImage from '../assets/cash-flow-planning/budget.jpg';
+import calcImage from '../assets/cash-flow-planning/calc.jpg';
+
+
+const tabItems = [
+    {
+      title: "Financial Awareness",
+      content: `
+				<p>
+					Cash flow planning is an important tool in helping to understand your flow of funds. It heightens awareness of every inflow and outflow thus identifying spending patterns.  Understanding where your funds are going is the first step in developing a financial plan.
+        </p>
+        <p>
+          Further, it is important to break down the types of expenses into basic core expenses, which are those costs necessary for daily living, discretionary expenses, and luxury spending. 
+        </p>
+        <p>
+          This focus on cash flows may also lead to potential cost savings, improving the likelihood of having funds left over on a regular basis to pay down debt or contribute to retirement savings. It will also help to ensure that your basic core expenses are covered by more stable and reliable sources of income such as CPP, OAS and other pension income.
+        </p>
+					`,
+    },
+    {
+      title: "Achieving your Financial Goals",
+      content: `
+				<p>
+          An effective cash flow plan creates a roadmap which will help you achieve your financial goals. Whether it is paying down debt, saving for a down payment on a house, building an emergency fund or building up your nest egg for retirement, having a clear cash flow plan will help you achieve these goals.
+        </p>
+					`,
+    },
+    {
+      title: "Better Risk Management",
+      content: `
+				<p>
+          A greater understanding of cash inflows and outflows makes it easier to create an appropriate contingency fund for unexpected events or expenses.
+        </p>
+					`,
+    },
+  ];
+
+---
+
+<Layout 
+  title="Cash Flow Planning" 
+  description="Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."
+  ogImageUrl={budgetImage.src}
+>
+	<section>
+		<div class="relative container">
+      <div class="cb-grad v-padding">
+        <img src={heroBg.src} class="services-hero-bg" />
+        <div class="tac mw-900">
+          <div class="services-hero-section">
+            <div class="hero-text flex-v center lrg">
+              <h1>Cash Flow Planner in Calgary</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section class="v-padding">
+    <div class="container">
+      <div class="grid-2 sixty-forty lg center">
+        <div class="flex-v">
+          <h4>Smart Cash Flow Planning: Stay Secure & Avoid Debt</h4>
+          <p class="smb-0">
+            Cash flow planning ensures your income supports your expenses, preventing debt and financial shortfalls in retirement. A strong plan analyzes when money is needed and where it should come from.
+          </p>
+          <p>
+            Budgeting is key to effective cash flow management. As your advisors, we help you allocate resources wisely, ensuring financial stability and reducing stress for both daily needs and long-term security.
+          </p>
+        </div>
+        <div class="image-wrapper">
+          <img src={budgetImage.src} alt=""/>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section id="fund" class="fund-section smb-6">
+		<div class="container">
+      <div class="tac mw-1000 flex-v center">
+        <h3 class="tac smb-3">The Importance and Benefit of Cash Flow Planning</h3>
+      </div>
+			<Tabs items={tabItems} alwaysAccordion={true} client:load />
+		</div>
+	</section>
+
+  <section class="smb-6">
+    <div class="container">
+      <div class="grid-2 thirty-seventy lg center">
+        <div class="image-wrapper">
+          <img src={calcImage.src} alt=""/>
+        </div>
+        <div class="flex-v">
+          <h4>Cash Flow Planning With Mirador Corporation</h4>
+          <p class="smb-0">
+            At Mirador Corporation, we strive to understand your entire financial picture.  This will enable us to guide you through all the aspects of planning your cash flow and recommend strategies to find the optimum balance between cash-in-hand, paying down debt and making wealth-preserving investments. We will also help you to identify your total sources of income so that we have a clear understanding of how much cash you will need to withdraw from your investment portfolio each month to meet your expenses and how much of this withdrawal will be covered by the distribution from Triopay, and how much will be a draw on capital.
+          </p>
+          <p>
+            When you are relying on your investment income to fund cash flow requirements, we will make recommendations as to which account makes the most sense to fund the cash need, taking into consideration the income being generated in that account (which will minimize drawdown) as well as the overall income tax situation of you and your spouse such that income taxes are minimized on each cash withdrawal.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+  
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+					Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.
+				</p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

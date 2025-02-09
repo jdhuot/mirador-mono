@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.jsx';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+
+import taxesImage from '../assets/tax-planning/taxes.jpg';
+import growthImage from '../assets/tax-planning/growth.jpg';
+
+
+const tabItems = [
+    {
+      title: "Wealth Accumulation",
+      content: `
+				<p>
+					Tax planning is a key element in wealth accumulation strategies.  By optimizing investment decisions and minimizing tax implications, you can enhance the growth of your assets over time, which facilitates the accumulation of wealth and leads to increased financial independence, retirement readiness and the ability to achieve long-term financial and lifestyle objectives.
+        </p>
+					`,
+    },
+    {
+      title: "Holistic Financial Management",
+      content: `
+				<p>
+          Tax planning is an integral part of holistic financial management.  It involves considering the broader financial landscape, including budgeting, investment planning and debt management within the context of tax implications.  It also involves considering the financial picture of your business, your spouse and other family members to identify opportunities for income splitting.  By integrating tax strategies into comprehensive financial planning, you can achieve a well-rounded and efficient approach to managing your financial affairs.
+        </p>
+					`,
+    },
+    {
+      title: "Strategic Decision-Making",
+      content: `
+				<p>
+          Tax planning guides strategic decision making by providing a framework for evaluating the financial impact of various choices.   Whether it’s choosing investment vehicles or timing significant financial transactions, understanding the tax implications allows you to make informed and strategic decisions.  This proactive approach aligns financial goals with tax efficiency, promoting a more prosperous and sustainable financial future.
+        </p>
+        <p>
+          When our investment clients come to Mirador for help with their Calgary tax planning strategies, we work closely with your tax advisor to ensure that your financial affairs are structured in the most tax effective manner possible.
+        </p>
+					`,
+    },
+  ];
+
+---
+
+<Layout 
+  title="Tax Planning" 
+  description="Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."
+  ogImageUrl={taxesImage.src}
+>
+	<section>
+		<div class="relative container">
+      <div class="cb-grad v-padding">
+        <img src={heroBg.src} class="services-hero-bg" />
+        <div class="tac mw-900">
+          <div class="services-hero-section">
+            <div class="hero-text flex-v center lrg">
+              <h4>Tax Planning in Calgary</h4>
+              <div class="hr"></div>
+              <h1>Building Your Tax Planning Strategy to Minimize Your Taxes</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section class="v-padding">
+    <div class="container">
+      <div class="grid-2 sixty-forty lg center">
+        <div class="flex-v">
+          <h4>Smart Tax Planning: Maximizing Wealth by Minimizing Taxes</h4>
+          <p class="smb-0">
+            Everyone has to pay taxes, but minimizing taxes can have a significant impact on your wealth over the long term. With some planning and help from our tax strategists, Mirador clients can potentially reduce the amount of taxes they owe.
+          </p>
+          <p class="smb-0">
+            This active approach to your tax planning in Calgary is just one of the ways we take a holistic approach to your investment and wealth management.  We know that tax needs vary by client and that your tax advisor might not have a full financial snapshot of your investments to enable them to implement the most effective tax plan.
+          </p>
+          <p>
+            We work closely with your tax advisor to identify, recommend, and implement strategies that will minimize your family’s taxes.  This includes identifying opportunities for income splitting, analyzing the optimal timing for each income stream, family trusts, corporate holding companies and other strategies.
+          </p>
+        </div>
+        <div class="image-wrapper">
+          <img src={taxesImage.src} alt=""/>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section class="smb-6">
+    <div class="container">
+      <div class="grid-2 thirty-seventy lg center">
+        <div class="image-wrapper">
+          <img src={growthImage.src} alt=""/>
+        </div>
+        <div class="flex-v">
+          <h4>The Importance of Tax Planning in Calgary</h4>
+          <p class="smb-2">
+            Tax planning is a fundamental part of financial management and there are several key reasons why it is important to engage in proactive tax planning. Get the tax advice you need from Mirador Corporation.
+          </p>
+          <h4>Maximizing Savings and Creating Financial Security</h4>
+          <p>
+            Tax planning plays a pivotal role in maximizing your savings. By identifying and leveraging available deductions, credits, and exemptions you can significantly reduce your taxes owing. This proactive approach allows you to retain more of your income to meet your life goals. It also enhances financial stability and security as it frees up resources to build emergency funds, invest in insurance and create a safety net for unforeseen circumstances.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+
+	
+	<section id="fund" class="fund-section smb-6">
+		<div class="container">
+			<Tabs items={tabItems} alwaysAccordion={true} client:load />
+		</div>
+	</section>
+
+  
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+					Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.
+				</p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

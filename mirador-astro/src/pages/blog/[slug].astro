@@ -1,0 +1,55 @@
+---
+export const prerender = false;
+import Layout from "../../layouts/Layout.astro";
+import { sanityClient } from "../../lib/sanity.js";
+import PortableTextRenderer from "../../components/PortableTextRenderer.jsx";
+
+const { slug } = Astro.params;
+
+const query = `*[_type == "blog" && slug.current == $slug][0] {
+  title,
+  subtitle,
+  metaDescription,
+  metaTitle,
+  exerpt,
+  "imageUrl": featuredImage.asset->url,
+  body[]{
+    ...,
+    _type == "image" => {
+      "url": asset->url,
+      alt
+    }
+  },
+  category->{title, slug},
+  author->{name},
+  publishedAt,
+  "createdAt": _createdAt
+}`;
+
+const post = await sanityClient.fetch(query, { slug });
+
+if (!post) {
+  throw new Error("Post not found");
+}
+---
+
+<Layout 
+  title={post.title}
+  description={post.metaDescription}
+  ogImageUrl={post.imageUrl}
+>
+  <section class="">
+    <div class="container flex-v mw-800">
+      <a class="smb-2" href={`/${post.category.slug.current}`}>← Back</a>
+      <div class="flex-v center tac">
+        <h1 class="h2">{post.title}</h1>
+        {post.subtitle && <h4>{post.subtitle}</h4>}
+        {post.imageUrl && <img src={post.imageUrl} alt={post.title} />}
+        <p>Published on: {new Date(post.publishedAt).toLocaleDateString()}</p>
+      </div>
+      <div class="posts-body">
+        <PortableTextRenderer content={post.body} />
+      </div>
+    </div>
+  </section>
+</Layout>

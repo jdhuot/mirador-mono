@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.jsx';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+
+import estateImage from '../assets/estate-planning/estate.jpg';
+import willImage from '../assets/estate-planning/will.jpg';
+
+
+const tabItems = [
+    {
+      title: "Naming Beneficiaries on Registered Accounts",
+      content: `
+				<p>
+					Upon your death, the balance of your registered accounts such as your Retirement Savings Plan (RRSP) or Registered Retirement Income Fund (RRIF), can be transferred on a tax-deferred to your spouse or a child that is financially dependent because of an impairment in physical or mental function, if they are named as the beneficiary. Taxes will be owed in the future as amounts are withdrawn from the RRSP or RRIF.
+        </p>
+        <p>
+          Without a spouse or dependent child named as the beneficiary, the balance of the registered account goes to the estate and the full amount will be taxed at the time of your death.    This will have a significant adverse impact on the amount of wealth you are leaving to your beneficiaries.
+        </p>
+					`,
+    },
+    {
+      title: "Naming a Successor Annuitant",
+      content: `
+				<p>
+          You can also name your spouse as a successor annuitant of your RRIF (but not your RRSP) instead of naming them as a beneficiary. In this instance, they receive income from the RRIF each year until their death, at which time the balance of the RRIF will pass to the beneficiary you have named, such as your children.  This strategy is often used in second marriages and allows you to take care of your spouse as long as they are alive, and gives you control over who receives the residual value.
+        </p>
+					`,
+    },
+    {
+      title: "Timing Withdrawals from your RRSPs and RRIFs",
+      content: `
+				<p>
+          It often makes sense to delay withdrawals from your RRSP or RRIF as long as possible to defer tax and maximize the amount of capital working for you. However, there are times when it makes sense to withdraw amounts from your RRSPs or RRIFs earlier such as when you are in a lower income tax bracket or to minimize the Old Age Security (OAS) claw back.   Similarly, it might make sense to withdraw funds from your RRIF to make your annual TFSA contribution.
+        </p>
+					`,
+    },
+  ];
+
+---
+
+<Layout 
+  title="Estate Planning in Calgary" 
+  description="Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."
+  ogImageUrl={estateImage.src}
+>
+	<section>
+		<div class="relative container">
+      <div class="cb-grad v-padding">
+        <img src={heroBg.src} class="services-hero-bg" />
+        <div class="tac mw-900">
+          <div class="services-hero-section">
+            <div class="hero-text flex-v center lrg">
+              <h1>Estate Planning in Calgary</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section class="v-padding">
+    <div class="container">
+      <div class="grid-2 forty-sixty lg center">
+        <div class="image-wrapper">
+          <img src={estateImage.src} alt=""/>
+        </div>
+        <div class="flex-v">
+          <h4>Estate Planning: Protect Your Legacy & Reduce Taxes</h4>
+          <p class="smb-0">
+            An estate plan ensures your wealth is distributed according to your wishes while minimizing tax burdens for your beneficiaries. It also helps prevent legal and emotional stress for your loved ones.
+          </p>
+          <p class="smb-0">
+            Key elements include a will, power of attorney, and personal directive to manage your affairs if you're incapacitated. Whether passing on a family cottage, business, or setting up trusts, we help structure your plan efficiently.
+          </p>
+          <p>
+            At Mirador, we work with your lawyers and tax advisors to ensure your estate is handled tax-effectively. We also guide you on beneficiary designations and tax-smart withdrawal strategies.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+
+  <section id="fund" class="fund-section smb-6">
+		<div class="container">
+      <div class="tac mw-1000 flex-v center">
+        <h3 class="tac smb-3">Optimizing Retirement Accounts: Smart Strategies for Beneficiaries & Withdrawals</h3>
+      </div>
+			<Tabs items={tabItems} alwaysAccordion={true} client:load />
+		</div>
+	</section>
+
+  <section class="smb-6">
+    <div class="container">
+      <div class="grid-2 sixty-forty lg center">
+        <div class="flex-v">
+          <h4>Estate Planning: Ensuring a Smooth Wealth Transition</h4>
+          <p class="smb-0">
+            At Mirador Corporation, we realize the importance of estate planning for those who want to leave a financial legacy. We recognize the uniqueness of each individual situation and will do an analysis and make recommendations to help you achieve your estate planning goals to ensure a smooth wealth transition.
+          </p>
+          <p>
+            Of equal importance, we will ensure that the wishes outlined in your will and estate plan are reflected in your financial and retirement plans so that they all work together to achieve your goals.
+          </p>
+        </div>
+        <div class="image-wrapper">
+          <img src={willImage.src} alt=""/>
+        </div>
+      </div>
+		</div>
+	</section>
+  
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+					Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.
+				</p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

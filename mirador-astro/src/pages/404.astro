@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+
+import corpLogo from '../assets/footer-logo.png';
+
+---
+
+<Layout title="Page Not Found">
+	<section>
+		<div class="relative container v-padding">
+			<img src={heroBg.src} class="services-hero-bg" />
+			<div class="tac mw-900">
+				<div class="services-hero-section">
+					<div class="hero-text flex-v center lrg">
+						<h1>404</h1>
+            <h3>Page Not Found</h3>
+            <a href="/">
+              <button class="button-primary">
+                  Return Home
+              </button>
+              </a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+          Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.
+        </p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

@@ -1,0 +1,129 @@
+@import "../styles/mixins.scss";
+
+
+/* Burger Button */
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+
+  .bar {
+    width: 30px;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &.open {
+    .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  }
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  transform: translateX(100%);
+  display: block;
+  pointer-events: none;
+  position: absolute;
+  top: 90px;
+  right: 0;
+  background: rgba(0, 0, 0, 1);
+  width: 100%;
+  padding: 2rem;
+  border-radius: 8px;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+
+  ul.dropdown-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    padding: 1rem 2rem;
+    display: none;
+    background: var(--off-black);
+    li {
+      margin-bottom: 0px;
+    }
+
+    &.show {
+      display: block;
+    }
+  }
+
+  li {
+    padding: 10px 0;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+    display: block;
+  }
+
+  &.active {
+    // display: block;
+    pointer-events: auto;
+    transform: translateX(0%);
+  }
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  opacity: 0;
+  display: block;
+  padding-left: 15px;
+  list-style: none;
+  transition: all 0.3s ease-in-out;
+
+  &.show {
+    opacity: 1;
+  }
+
+  @include min-width(tablet) {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    width: 200px;
+    padding: 1rem 1rem;
+  }
+
+}
+
+/* Show burger button on mobile */
+@media (max-width: 992px) {
+  .burger-menu {
+    display: flex;
+  }
+}
+
+.dropdown {
+  span {
+    display: inline-block;
+    transform: translate(2px, -1px);
+  }
+  z-index: 5;
+  @include min-width(desktop) {
+    position: relative;
+    &:hover {
+      .dropdown-menu {
+        // display: block;
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.jsx';
+
+import MySwiper from '../components/MySwiper.jsx';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+
+import captureImage from '../assets/wealth-advisory-services/capture.jpg';
+import laptopImage from '../assets/wealth-advisory-services/laptop.jpg';
+
+
+const tabItems = [
+    {
+      title: "Financial Planning",
+      content: `
+				<p>
+					Financial planning is critical to ensure a secure and stress-free future without having to change your lifestyle. It serves as a strategic roadmap to guide you towards achieving your financial goals.
+				</p>
+				<p>
+					Financial planning is not as straightforward as it may seem. It starts with having a clear understanding of your annual after-tax cash flow needs to allow you to live your desired lifestyle throughout your life. It then involves careful assessment of all your income sources and identifying the most tax-effective strategies for utilizing this income to meet your cash flow needs.  All while ensuring there is money left at the end of your life to fulfill any legacy plan that you may have to efficiently pass on your wealth.  This can get quite overwhelming without the help of an expert.
+				</p>
+				<p>
+          At Mirador Corporation, we will put your mind at ease by creating a dynamic plan that can weather economic fluctuations and unexpected market challenges. We will then integrate this with your portfolio management so that your investments are working for you to achieve your goals. Financial planning is the first step towards attaining a secure and prosperous financial future and your wealth advisor at Mirador will guide you towards a solid financial foundation.
+        </p>
+        <br/>
+        <a href="/financial-planning"><button class="button-primary">Learn More</button></a>
+					`,
+    },
+    {
+      title: "Tax Planning",
+      content: `
+        <p>
+          Paying income taxes is one of life’s few certainties yet it is often overlooked when creating your financial plan and managing your wealth. Developing and implementing strategies to minimize your taxes each year can help you save money and have a significant impact on the after-tax cash flow available to you throughout your life. It is also important to consider income taxes in your estate plan if your goal is to maximize the after-tax wealth of your estate for your beneficiaries.
+        </p>
+        <p>
+          Your Mirador advisor will work closely with your tax advisor to recommend and implement strategies to minimize your tax liability and maximize after-tax investment income and wealth preservation. This active approach to your tax planning is part of our holistic approach to your investment and wealth management.
+        </p>
+        <br/>
+        <a href="/tax-planning"><button class="button-primary">Learn More</button></a>
+			
+      `,
+    },
+    {
+      title: "Retirement Planning",
+      content: `
+        <p>
+          People’s ideas of their long-term future and retirement are changing greatly. Many people love what they do and have no wish or need to retire. For others, the gig economy is allowing older people to supplement income significantly. The hybrid work structure combining home and office work is easing the desire to leave the workforce. If you are one whom definitely wants to leave the workforce and retire, you might be shocked to discover how many people don’t plan for their retirement. Don’t face an uncertain financial future after you retire.  Investing in the Mirador Income and Stability Fund is a massive leap forward in helping you achieve the lifestyle you’ve worked towards your whole life, but other retirement planning factors will still need to be considered.
+        </p>
+        <p>
+          Mirador’s planning approach is needs-based. We like to “start with the end in mind”.  The end in mind is what is your ideal retirement lifestyle and what is the after-tax cash flow needed to support that? But, good retirement planning is about more than just dollars in the bank. Planning for retirement involves several considerations which starts with truly understanding your cash flow needs to comfortably maintain your desired lifestyle throughout your retirement years. It includes analyzing your income sources, minimizing taxes so you can maximize after-tax cash flow, understanding and managing day-to-day expenses including healthcare, strategic asset allocation, creating emergency funds, among others.
+        </p>
+        <p>
+          Are you a bit late to the retirement planning game or are your investments underperforming?  As strategists, we will help you structure and streamline your retirement and estate plans and give you advice on how to maximize income sources like investments to ensure a stress-free retirement.
+        </p>
+        <br/>
+        <a href="/retirement-planning"><button class="button-primary">Learn More</button></a>
+			
+      `,
+    },
+    {
+      title: "Cash Flow Planning",
+      content: `
+        <p>
+          You often hear of businesses that experience cash flow problems and some even must close their doors because of it. But cash flow isn’t just a concern for businesses, it is very important for individuals too. The thing is, you may have the world’s most valuable assets but if all your cash is tied up in those assets, how are you going to pay your bills?  Getting the balance right is especially important when you get closer to retirement and you want to secure your finances for your life after your last pay cheque.
+        </p>
+        <p>
+          Its not just the long-term rates of return that matter the most. The order of returns can have a serious impact on your financial security. Cash flow withdrawals in times of market draw-downs can have a devastating effect on your total net worth. This is why cash flow planning and timing is so important.  We will talk you through all the aspects of planning your cash flow and recommend strategies to find the optimum balance between cash-in-hand and wealth-preserving investments.
+        </p>
+        <br/>
+        <a href="/cash-flow-planning"><button class="button-primary">Learn More</button></a>
+			
+      `,
+    },
+    {
+      title: "Estate Planning",
+      content: `
+        <p>
+          We all have different ideas about leaving a legacy.  Some want to die broke, with the last cheque being to the undertaker bouncing. But most want to help their survivors. Complicating matters is that we don’t know when our day of passing may come. When that day comes, what will happen to your estate? Do you want to leave a financial legacy to your beneficiaries or your favourite charities? How will your assets be divided? These are important questions that estate planning addresses to ensure that your final wishes are fulfilled when you pass.
+        </p>
+        <p>
+          Estate planning includes making informed decisions on things like wills, living wills, business succession, powers of attorney, enduring powers of attorney, and tax planning to ensure that your estate value is maximized, is properly managed, and assets are distributed according to your wishes.  
+        </p>
+        <p>
+          At Mirador Corporation, we help bridge the gap between your estate plan and your investments by acting as a quarterback between your lawyer, tax advisors and other stakeholders.  We ensure your complete financial picture is taken into consideration when devising your estate plan.  We also help ensure that your estate is structured so that your assets will be distributed according to your wishes without leaving beneficiaries with undue financial burdens.
+        </p>
+        <p>
+          Of equal importance, we ensure that your financial and retirement plans reflect the wishes in your estate plan so that they all work together to achieve your goals. Establishing your estate plan isn’t just a once-off. Things change all the time. At Mirador, we help to ensure that your plans are reviewed regularly to ensure that your wishes are honoured as intended.
+        </p>
+        <br/>
+        <a href="/estate-planning"><button class="button-primary">Learn More</button></a>
+			
+      `,
+    },
+    {
+      title: "Personal Risk Management",
+      content: `
+        <p>
+          Many people think of risk management as only referring to the portfolio management aspect of wealth advice. And risk management is a major part of the Mirador Income and Stability Fund. But there are other risks that need to be carefully considered. For example, our planning projections use the worst case scenarios, low expected rates of return, high inflation and taxes, and extra generous longevity.
+        </p>
+        <p>
+          The order of returns and withdrawals relative to market cycles are considered. Health issues need to be addressed and disability insurance possibly considered. And what if government policies change and it has an adverse impact on your plans?
+        </p>
+        <p>
+          And, even the best lived life can end up needing to deal with an emergency that requires substantial funds and planning to ensure the funds are there when or if needed. You can depend on Mirador to handle all these details and keep you apprised as the circumstances change.
+        </p>
+        <br/>
+        <a href="/personal-risk-management"><button class="button-primary">Learn More</button></a>
+			
+      `,
+    },
+  ];
+
+---
+
+<Layout 
+  title="Wealth Advisory Services"
+  description="Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."
+  ogImageUrl={captureImage.src}
+>
+
+	<section>
+		<div class="relative container v-padding">
+			<img src={heroBg.src} class="services-hero-bg" />
+			<div class="tac mw-900">
+				<div class="services-hero-section">
+					<div class="hero-text flex-v center lrg">
+						<h4>Wealth Advisory Services</h4>
+						<h1>Personalized advice to ensure your wealth is working for you</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+  <section>
+    <div class="container">
+      <div class="hr"></div>
+    </div>
+  </section>
+	<section class="v-padding">
+    <div class="container">
+      <div class="grid-2 sixty-forty lg center">
+        <div class="flex-v">
+          <h4>‘Wealth is the ability to fully experience life‘</h4>
+          <h6>- Henry David Thoreau</h6>
+          <p class="smb-0">
+            When you invest with Mirador, you don’t just benefit from our portfolio management focus on wealth preservation and investment income.  You also get access to our comprehensive wealth advisory services.  We assist our clients in making informed decisions about their finances to achieve their goals and to help secure their financial future so they can live their desired lifestyle throughout their retirement years.
+          </p>
+          <p>
+            We take a holistic approach, considering various aspects of our clients’ financial life, and where relevant, that of their family. This includes financial planning, cash flow planning, tax, retirement and estate planning, and ensuring each of these pieces are integrated into an overall plan and your investment portfolio. We know each client’s financial status and aspirations are different, so we tailor our advice and guidance to each individual or family.
+          </p>
+        </div>
+        <div class="image-wrapper">
+          <img src={captureImage.src} alt=""/>
+        </div>
+      </div>
+		</div>
+	</section>
+  <section class="smb-6">
+    <div class="container">
+      <div class="grid-2 forty-sixty lg center">
+        <div class="image-wrapper">
+          <img src={laptopImage.src} alt=""/>
+        </div>
+        <div class="flex-v">
+          <p class="smb-0">
+            The study of behavioral finance that is so important to Mirador’s investment approach is also applied to our wealth advisory services. We use our understanding of behavioral finance to ensure that our knowledge of our clients goes well beyond the typical investment firm’s check boxes for people’s objectives, risk factor and time frames. And if you are interested in going one step further, you may participate in our investment personality study that provides an even more in-depth analysis of your investor characteristics.
+          </p>
+          <p>
+            For clients depositing initial capital of $500,000 or greater,  Mirador Corporation will provide an initial financial plan and continuing wealth advisory support if requested.  Otherwise Mirador will provide  a plan and Wealth Advisory Services on a fee-for-service basis .  The fee will be based on the hours of work required, which depends on the complexity of the situation.  Typically an initial financial plan will cost approximately $1800 Canadian dollars.
+          </p>
+        </div>
+      </div>
+		</div>
+	</section>
+	<section id="fund" class="fund-section smb-6">
+		<div class="container">
+			<h3 class="tac smb-3">What We Do Well</h3>
+			<Tabs items={tabItems} client:load />
+		</div>
+	</section>
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+					Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.
+				</p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>

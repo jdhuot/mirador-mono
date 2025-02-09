@@ -1,0 +1,27 @@
+// Define breakpoints
+$breakpoints: (
+  mobile: 768px,
+  tablet: 992px,
+  desktop: 1200px
+);
+
+// Mixin for media queries
+@mixin max-width($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (max-width: #{map-get($breakpoints, $size)}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$size} is not defined in $breakpoints map.";
+  }
+}
+
+@mixin min-width($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media (min-width: #{map-get($breakpoints, $size)}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$size} is not defined in $breakpoints map.";
+  }
+}

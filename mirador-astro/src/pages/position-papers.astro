@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import { sanityClient } from "../lib/sanity.js";
+import PortableTextRenderer from "../components/PortableTextRenderer.jsx";
+import fallbackImage from "../assets/fallback.jpg";
+
+const query = `*[_type == "blog" && category->title == "Position Papers"] | order(publishedAt desc) {
+  title,
+  slug,
+  excerpt[]{
+    ...
+  },
+  comingSoon,
+  "imageUrl": featuredImage.asset->url,
+  category->{title},
+  body[]{
+    ...,
+    _type == "image" => {
+      "url": asset->url,
+      alt
+    }
+  },
+  publishedAt,
+  "createdAt": _createdAt
+}`;
+
+const posts = await sanityClient.fetch(query);
+
+
+---
+
+<Layout 
+  title="Our Team"
+>
+  
+	<section class="v-padding our-team-main blog-card-wrapper">
+    <div class="container">
+      <div class="smb-6">
+        <div class="flex-v center mw-1000 tac">
+          <h4>Mirador Corporation</h4>
+          <h1 class="smb-1">Investment Management Position Papers</h1>
+          <p class="smb-0">
+            This collection features Mirador writings from past decades, mainly from client letters and investment seminars. We’re sharing them to highlight key topics for clients and give prospective clients insight into Mirador. It’s a work in progress—we’re updating and formatting papers over time. For now, only the first one is available. Sign up for email alerts to be notified as we release more.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-2 lg center">
+        {posts && posts.length > 0 && posts.map((post:any, index:number) => {
+
+          if (!post.comingSoon) {
+            return (
+              <a class="flex-v blog-card" href={`/blog/${post.slug.current}`}>
+                <h4 class="smb-0">{post.title}</h4>
+                {post.excerpt &&
+                  <PortableTextRenderer content={post.excerpt} />
+                }
+                {post.subtite &&
+                  <p class="body-lg">{post.subtite}</p>
+                }
+                {!post.excerpt &&
+                  <div class="clamp smb-1">
+                    <PortableTextRenderer content={post.body} />
+                  </div>
+                }
+                <button class="button-primary sm">Read More</button>
+              </a>
+            )
+          } else {
+            return (
+              <div class="flex-v blog-card">
+                <h4 class="smb-0">{post.title}</h4>
+                {post.subtite &&
+                  <p class="body-lg">{post.subtite}</p>
+                }
+                {post.excerpt &&
+                  <PortableTextRenderer content={post.excerpt} />
+                }
+                {!post.excerpt &&
+                  <div class="clamp smb-1">
+                    <PortableTextRenderer content={post.body} />
+                  </div>
+                }
+                <p class="callout">Coming Soon - <a href="#signup">Sign up for our newsletter</a> to be notified when this Position Paper becomes available or for early access email Stan Clarke at <a href="mailto:stan@miradorwealth.com">stan@miradorwealth.com</a>.</p>
+              </div>
+            )
+          }
+        })}
+      </div>  
+      { (posts.length === 0 || !posts) &&
+        <div class="tac">
+          <h5>No posts found...</h5>
+        </div>
+      }
+
+		</div>
+	</section>
+  <section class="v-padding cb-grad">
+		<div class="container">
+			<div class="tac flex-v center mw-700">
+				<h2 class="smb-0">Get In Touch</h2>
+				<p>
+          Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.
+        </p>
+        <a href="/contact">
+          <button class="button-secondary">BOOK A CALL</button>
+        </a>
+			</div>
+		</div>
+	</section>
+</Layout>
