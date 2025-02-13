@@ -24,8 +24,7 @@ const query = `*[_type == "blog" && category->title == "Real Advice Blog"] | ord
   "createdAt": _createdAt
 }`;
 
-const posts = await sanityClient.fetch(query);
-
+const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
 
 ---
 
