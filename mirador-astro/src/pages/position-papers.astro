@@ -25,7 +25,7 @@ const query = `*[_type == "blog" && category->title == "Position Papers"] | orde
   "createdAt": _createdAt
 }`;
 
-const posts = await sanityClient.fetch(query);
+const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
 
 
 ---
