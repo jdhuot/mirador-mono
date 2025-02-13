@@ -403,7 +403,7 @@ form {
     justify-content: center;
     align-items: center;
   }
-  > .flex-v {
+  > .flex-v:not(.blog-card) {
     @include min-width(tablet) {
       padding: 4rem 0;
     }
@@ -414,7 +414,16 @@ form {
     height: 100%;
     overflow: hidden;
     @include max-width(mobile) {
+      order: -1;
       height: 56vw;
+      &.tall-mobile {
+        height: 100vw;
+        img {
+          top: 0px;
+          left: 0px;
+          transform: none;
+        }
+      }
     }
     > img {
       position: absolute;
@@ -638,13 +647,12 @@ form {
     left: 0;
   }
   &.fixed {
-    // @include min-width(desktop) {
-
-    // }
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
+    @include min-width(desktop) {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+    }
   }
 
   .navbar-wrapper {
@@ -1019,7 +1027,7 @@ footer {
 }
 
 .blog-card-wrapper {
-  .grid-3 {
+  .grid-3, .grid-2 {
     align-items: stretch;
     gap: 3rem;
   }

@@ -108,6 +108,7 @@ const menuItems = [
     }
 
     function handleScroll() {
+      if (window.innerWidth <= 992) return;
       const scrollY = window.scrollY;
 
       if (scrollY > threshold && !isScrolled) {
@@ -136,7 +137,14 @@ const menuItems = [
     function handleResize() {
       threshold = updateThreshold();
       updateBodyPadding(); // Reset padding properly
-      handleScroll(); // Ensure navbar state is updated after resize
+      if (window.innerWidth > 992) {
+        handleScroll();
+        window.addEventListener("scroll", optimizedScroll);
+      } else {
+        nav.classList.remove("fixed");
+        triggerElement?.classList.remove("hide");
+        window.removeEventListener("scroll", optimizedScroll);
+      }
     }
 
     // Apply padding and trigger initial scroll check
@@ -147,66 +155,3 @@ const menuItems = [
     window.addEventListener("resize", handleResize);
   });
 </script>
-
-
-
-<!-- <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const nav = document.getElementById("nav");
-    const triggerElement = document.getElementById("triggerElement");
-    const body = document.body; // Get body element
-
-    if (!triggerElement) {
-      nav.classList.add("fixed");
-      return;
-    }
-
-    function updateThreshold() {
-      return triggerElement.offsetHeight; // Get dynamic height
-    }
-
-    let threshold = updateThreshold();
-    let isScrolled = false;
-
-    // Set initial padding-top dynamically
-    function updateBodyPadding() {
-      body.style.paddingTop = `${threshold + parseInt(getComputedStyle(body).paddingTop)}px`;
-    }
-
-    updateBodyPadding(); // Apply padding when page loads
-
-    function handleScroll() {
-      const scrollY = window.scrollY;
-
-      if (scrollY > threshold && !isScrolled) {
-        triggerElement?.classList.add("hide");
-        nav.classList.add("fixed");
-        isScrolled = true;
-      } else if (scrollY <= threshold && isScrolled) {
-        triggerElement?.classList.remove("hide");
-        nav.classList.remove("fixed");
-        isScrolled = false;
-      }
-    }
-
-    // Optimize performance with requestAnimationFrame
-    let ticking = false;
-    function optimizedScroll() {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
-
-    window.addEventListener("scroll", optimizedScroll);
-
-    // Recalculate threshold & update padding on resize
-    window.addEventListener("resize", () => {
-      threshold = updateThreshold();
-      updateBodyPadding();
-    });
-  });
-</script> -->
