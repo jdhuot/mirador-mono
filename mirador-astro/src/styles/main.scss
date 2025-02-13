@@ -96,6 +96,9 @@ p {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  img {
+    display: none;
+  }
 }
 
 .ct-light-blue {
