@@ -52,23 +52,27 @@ const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
 
       <div class="grid-3 lg center">
         {posts && posts.length > 0 && posts.map((post:any) => (
-          <a class="flex-v blog-card" href={`/blog/${post.slug.current}`}>
-            <div class="blog-card-image">
+          <div class="flex-v blog-card">
+            <a href={`/blog/${post.slug.current}`} class="blog-card-image">
               <img src={post.imageUrl ? post.imageUrl : fallbackImage.src} alt="" />
-            </div>
-            <h5 class="smb-0">{post.title}</h5>
+            </a>
+            <a href={`/blog/${post.slug.current}`}>
+              <h5 class="smb-0">{post.title}</h5>
+            </a>
             {post.excerpt &&
-              <p class="clamp">
+              <div class="clamp">
                 <PortableTextRenderer content={post.excerpt} />
-              </p>
+              </div>
             }
             {!post.excerpt &&
               <div class="clamp">
                 <PortableTextRenderer content={post.body} />
               </div>
             }
-            <button class="button-primary sm">Read More</button>
-          </a>
+            <a href={`/blog/${post.slug.current}`}>
+              <button class="button-primary sm">Read More</button>
+            </a>
+          </div>
         ))}
       </div>  
       { (posts.length === 0 || !posts) &&

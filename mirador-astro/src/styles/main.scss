@@ -638,6 +638,9 @@ form {
     left: 0;
   }
   &.fixed {
+    // @include min-width(desktop) {
+
+    // }
     position: fixed;
     z-index: 10;
     top: 0;

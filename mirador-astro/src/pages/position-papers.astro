@@ -52,21 +52,43 @@ const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
 
           if (!post.comingSoon) {
             return (
-              <a class="flex-v blog-card" href={`/blog/${post.slug.current}`}>
-                <h4 class="smb-0">{post.title}</h4>
+              // <a class="flex-v blog-card" href={`/blog/${post.slug.current}`}>
+              //   <h4 class="smb-0">{post.title}</h4>
+              //   {post.excerpt &&
+              //     <PortableTextRenderer content={post.excerpt} />
+              //   }
+              //   {post.subtite &&
+              //     <p class="body-lg">{post.subtite}</p>
+              //   }
+              //   {!post.excerpt &&
+              //     <div class="clamp smb-1">
+              //       <PortableTextRenderer content={post.body} />
+              //     </div>
+              //   }
+              //   <button class="button-primary sm">Read More</button>
+              // </a>
+
+
+              <div class="flex-v blog-card">
+                <a href={`/blog/${post.slug.current}`}>
+                  <h4 class="smb-0">{post.title}</h4>
+                </a>
                 {post.excerpt &&
-                  <PortableTextRenderer content={post.excerpt} />
-                }
-                {post.subtite &&
-                  <p class="body-lg">{post.subtite}</p>
+                  <div class="clamp">
+                    <PortableTextRenderer content={post.excerpt} />
+                  </div>
                 }
                 {!post.excerpt &&
-                  <div class="clamp smb-1">
+                  <div class="clamp">
                     <PortableTextRenderer content={post.body} />
                   </div>
                 }
-                <button class="button-primary sm">Read More</button>
-              </a>
+                <a href={`/blog/${post.slug.current}`}>
+                  <button class="button-primary sm">Read More</button>
+                </a>
+              </div>
+
+
             )
           } else {
             return (
