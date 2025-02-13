@@ -1,3 +1,6 @@
+@import "mixins";
+
+
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -48,6 +51,12 @@
   background-color: rgba(255, 0, 0, 0.5);
 }
 
+
+.swiper-pagination {
+  @include max-width(tablet) {
+    display: none;
+  }
+}
 
 .swiper-pagination-bullet {
   background: var(--dark-blue);

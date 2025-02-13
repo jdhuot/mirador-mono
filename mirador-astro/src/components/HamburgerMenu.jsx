@@ -46,6 +46,7 @@ export default function HamburgerMenu({ menuItems }) {
               )}
             </li>
           ))}
+          <li><a href="tel:+14037180125"><button class="button-secondary nav-button">(403) 718-0125</button></a></li>
         </ul>
       </nav>
     </div>

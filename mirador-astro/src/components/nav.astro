@@ -1,5 +1,6 @@
 ---
 import HamburgerMenu from "./HamburgerMenu.jsx";
+import { useEffect } from "astro/client";
 
 import { sanityClient } from "../lib/sanity.js";
 
@@ -25,13 +26,13 @@ const menuItems = [
       { title: "Wealth Advisory Services", link: "/wealth-advisory-services" },
     ],
   },
-  { title: "Portfolio Approach", link: "/our-approach" },
+  { title: "Our Approach", link: "/our-approach" },
   {
     title: "Our Team",
     link: "/our-team",
   },
   {
-    title: "Knowledge Base",
+    title: "Resources",
     link: "#",
     submenu: [...categoryLinks],
   },
@@ -39,31 +40,173 @@ const menuItems = [
 ];
 
 ---
-
-<nav class="navbar">
-  <div class="navbar-wrapper">
-    <a href="/" class="logo">
-      <img src="/logo_blue_mirador.png" alt="Mirador Corp Logo" class="logo-image" />
-    </a>
-
-    <ul class="desktop nav-links">
-      {menuItems.map((item) => (
-        <li class={item.submenu ? "dropdown" : ""}>
-          <a href={item.link}>{item.title} {item.submenu && <span>▾</span>}</a>
-          {item.submenu && (
-            <ul class="dropdown-menu">
-              {item.submenu.map((subItem) => (
-                <li><a href={subItem.link}>{subItem.title}</a></li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
-    </ul>
-
-    <!-- mobile -->
-    <div class="tablet">
-      <HamburgerMenu menuItems={menuItems} client:load />
+<div class="nav-block">
+  <section id="triggerElement">
+    <div class="topbar">
+      <div class="container tac">
+        <p>Let's talk. Schedule your FREE, no-obligation consultation with our team today! <a href="/contact">Book here</a></p>
+      </div>
     </div>
-  </div>
-</nav>
+    <div class="topbar-2">
+      <div class="container">
+        <p>Effective 2025, The <span>Triopay Unit Trust</span> has been renamed the <span>Mirador Income and Stability Fund</span>.  This name more accurately conveys the fund’s true objective, purpose and benefits. Likewise, any referral to a Triopay process, system, or program etc. refers to the Mirador Income and Stability process, system, or program etc..</p>
+      </div>
+    </div>
+  </section>
+  <nav id="nav" class="navbar">
+    <div class="navbar-wrapper">
+      <a href="/" class="logo">
+        <img src="/logo_blue_mirador.png" alt="Mirador Corp Logo" class="logo-image" />
+      </a>
+  
+      <ul class="desktop nav-links">
+        {menuItems.map((item) => (
+          <li class={item.submenu ? "dropdown" : ""}>
+            <a href={item.link}>{item.title} {item.submenu && <span>▾</span>}</a>
+            {item.submenu && (
+              <ul class="dropdown-menu">
+                {item.submenu.map((subItem) => (
+                  <li><a href={subItem.link}>{subItem.title}</a></li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+        <li><a href="tel:+14037180125"><button class="button-secondary nav-button">(403) 718-0125</button></a></li>
+      </ul>
+  
+      <!-- mobile -->
+      <div class="tablet">
+        <HamburgerMenu menuItems={menuItems} client:load />
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const nav = document.getElementById("nav");
+    const triggerElement = document.getElementById("triggerElement");
+    const body = document.body; // Get the body element
+
+    if (!triggerElement) {
+      nav.classList.add("fixed");
+      return;
+    }
+
+    function updateThreshold() {
+      return triggerElement.offsetHeight; // Get dynamic height
+    }
+
+    let threshold = updateThreshold();
+    let isScrolled = false;
+
+    // Set initial padding-top dynamically
+    function updateBodyPadding() {
+      body.style.paddingTop = `${threshold + 160}px`; // Set only the threshold, no accumulation
+    }
+
+    function handleScroll() {
+      const scrollY = window.scrollY;
+
+      if (scrollY > threshold && !isScrolled) {
+        triggerElement?.classList.add("hide");
+        nav.classList.add("fixed");
+        isScrolled = true;
+      } else if (scrollY <= threshold && isScrolled) {
+        triggerElement?.classList.remove("hide");
+        nav.classList.remove("fixed");
+        isScrolled = false;
+      }
+    }
+
+    // Optimize performance with requestAnimationFrame
+    let ticking = false;
+    function optimizedScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    function handleResize() {
+      threshold = updateThreshold();
+      updateBodyPadding(); // Reset padding properly
+      handleScroll(); // Ensure navbar state is updated after resize
+    }
+
+    // Apply padding and trigger initial scroll check
+    updateBodyPadding();
+    handleScroll();
+
+    window.addEventListener("scroll", optimizedScroll);
+    window.addEventListener("resize", handleResize);
+  });
+</script>
+
+
+
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const nav = document.getElementById("nav");
+    const triggerElement = document.getElementById("triggerElement");
+    const body = document.body; // Get body element
+
+    if (!triggerElement) {
+      nav.classList.add("fixed");
+      return;
+    }
+
+    function updateThreshold() {
+      return triggerElement.offsetHeight; // Get dynamic height
+    }
+
+    let threshold = updateThreshold();
+    let isScrolled = false;
+
+    // Set initial padding-top dynamically
+    function updateBodyPadding() {
+      body.style.paddingTop = `${threshold + parseInt(getComputedStyle(body).paddingTop)}px`;
+    }
+
+    updateBodyPadding(); // Apply padding when page loads
+
+    function handleScroll() {
+      const scrollY = window.scrollY;
+
+      if (scrollY > threshold && !isScrolled) {
+        triggerElement?.classList.add("hide");
+        nav.classList.add("fixed");
+        isScrolled = true;
+      } else if (scrollY <= threshold && isScrolled) {
+        triggerElement?.classList.remove("hide");
+        nav.classList.remove("fixed");
+        isScrolled = false;
+      }
+    }
+
+    // Optimize performance with requestAnimationFrame
+    let ticking = false;
+    function optimizedScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener("scroll", optimizedScroll);
+
+    // Recalculate threshold & update padding on resize
+    window.addEventListener("resize", () => {
+      threshold = updateThreshold();
+      updateBodyPadding();
+    });
+  });
+</script> -->
