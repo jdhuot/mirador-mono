@@ -5,6 +5,7 @@ import dots from "../assets/mirador-wealth-graphic-2.png";
 export default function Tabs({ items, alwaysAccordion = false }) {
   const [activeTab, setActiveTab] = useState(0);
   const [isAccordion, setIsAccordion] = useState(alwaysAccordion);
+  const [userClicked, setUserClicked] = useState(false); // ✅ Track if user clicked a tab
   const accordionRefs = useRef([]); // Store references to accordion sections
 
   // Detect if the screen should switch to accordion mode
@@ -20,34 +21,23 @@ export default function Tabs({ items, alwaysAccordion = false }) {
     }
   }, [alwaysAccordion]);
 
-  // // Scroll to the active accordion content when it's opened
-  // useEffect(() => {
-  //   if (isAccordion && activeTab !== -1) {
-  //     const activeAccordion = accordionRefs.current[activeTab];
-  //     if (activeAccordion) {
-  //       setTimeout(() => {
-  //         activeAccordion.scrollIntoView({ behavior: "smooth", block: "start" });
-  //       }, 500); // Small delay to ensure the animation starts
-  //     }
-  //   }
-  // }, [activeTab, isAccordion]);
-
+  // ✅ Only scroll when a user clicks, not on page load
   useEffect(() => {
-    if (isAccordion && activeTab !== -1) {
+    if (isAccordion && activeTab !== -1 && userClicked) {
       const activeAccordion = accordionRefs.current[activeTab];
       if (activeAccordion) {
         setTimeout(() => {
           requestAnimationFrame(() => {
-            const offset = 140; // Adjust this based on your navbar height
+            const offset = 140; // Adjust this based on navbar height
             const elementPosition = activeAccordion.getBoundingClientRect().top + window.scrollY;
             const offsetPosition = elementPosition - offset;
-  
+
             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
           });
-        }, 300); // Increased delay to ensure animation is fully expanded
+        }, 300); // Delay to ensure animation is fully expanded
       }
     }
-  }, [activeTab, isAccordion]);
+  }, [activeTab, isAccordion, userClicked]); // ✅ Only runs when userClicked is true
 
   return (
     <div className={`tabs-wrapper ${isAccordion ? "accordion" : ""}`}>
@@ -57,12 +47,15 @@ export default function Tabs({ items, alwaysAccordion = false }) {
             <div
               key={index}
               className="accordion-item"
-              id={`accordion-item-${index}`} // Assign a unique ID
-              ref={(el) => (accordionRefs.current[index] = el)} // Store ref
+              id={`accordion-item-${index}`}
+              ref={(el) => (accordionRefs.current[index] = el)}
             >
               <button
                 className={`accordion-header ${activeTab === index ? "active" : ""}`}
-                onClick={() => setActiveTab(activeTab === index ? -1 : index)}
+                onClick={() => {
+                  setUserClicked(true); // ✅ Mark that the user clicked
+                  setActiveTab(activeTab === index ? -1 : index);
+                }}
               >
                 {item.title}
               </button>
@@ -93,7 +86,10 @@ export default function Tabs({ items, alwaysAccordion = false }) {
             <button
               key={index}
               className={`${activeTab === index ? "active" : ""}`}
-              onClick={() => setActiveTab(index)}
+              onClick={() => {
+                setUserClicked(true); // ✅ Mark that the user clicked
+                setActiveTab(index);
+              }}
             >
               {item.title}
             </button>
@@ -116,14 +112,17 @@ export default function Tabs({ items, alwaysAccordion = false }) {
 }
 
 
-// import { useState, useEffect } from "react";
+
+// import { useState, useEffect, useRef } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
-// import dots from '../assets/mirador-wealth-graphic-2.png';
+// import dots from "../assets/mirador-wealth-graphic-2.png";
 
 // export default function Tabs({ items, alwaysAccordion = false }) {
 //   const [activeTab, setActiveTab] = useState(0);
 //   const [isAccordion, setIsAccordion] = useState(alwaysAccordion);
+//   const accordionRefs = useRef([]); // Store references to accordion sections
 
+//   // Detect if the screen should switch to accordion mode
 //   useEffect(() => {
 //     if (!alwaysAccordion) {
 //       const checkScreenSize = () => {
@@ -136,12 +135,34 @@ export default function Tabs({ items, alwaysAccordion = false }) {
 //     }
 //   }, [alwaysAccordion]);
 
+//   useEffect(() => {
+//     if (isAccordion && activeTab !== -1) {
+//       const activeAccordion = accordionRefs.current[activeTab];
+//       if (activeAccordion) {
+//         setTimeout(() => {
+//           requestAnimationFrame(() => {
+//             const offset = 140; // Adjust this based on your navbar height
+//             const elementPosition = activeAccordion.getBoundingClientRect().top + window.scrollY;
+//             const offsetPosition = elementPosition - offset;
+  
+//             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+//           });
+//         }, 300); // Increased delay to ensure animation is fully expanded
+//       }
+//     }
+//   }, [activeTab, isAccordion]);
+
 //   return (
 //     <div className={`tabs-wrapper ${isAccordion ? "accordion" : ""}`}>
 //       {isAccordion ? (
 //         <div className="accordion">
 //           {items.map((item, index) => (
-//             <div key={index} className="accordion-item">
+//             <div
+//               key={index}
+//               className="accordion-item"
+//               id={`accordion-item-${index}`} // Assign a unique ID
+//               ref={(el) => (accordionRefs.current[index] = el)} // Store ref
+//             >
 //               <button
 //                 className={`accordion-header ${activeTab === index ? "active" : ""}`}
 //                 onClick={() => setActiveTab(activeTab === index ? -1 : index)}
