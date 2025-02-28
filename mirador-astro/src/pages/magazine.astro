@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Tabs from '../components/Tabs.jsx';
+
+import graphImage from '../assets/contact/graph.png';
+
+
+const tabItems = [
+  {
+    title: "Volume 1",
+    content: `
+      <div class="flex-v relative">
+        <iframe src="https://online.fliphtml5.com/voto/reap/#p=1" width="100%" height="800px" frameborder="0"></iframe>
+        <a href="https://online.fliphtml5.com/voto/reap/#p=1" target="_blank">
+          <button class="button-primary">View Full Screen</button>
+        </a>
+      </div>
+        `,
+  },
+  {
+    title: "Volume 2",
+    content: `
+      <div class="flex-v relative">
+        <p>Coming soon..</p>
+      </div>
+        `,
+  },
+];
+---
+
+<Layout title="The Long View Magazine">
+  <section class="smb-6">
+    <div class="container smt-4">
+      <div class="flex-v center tac smb-2">
+        <h4>Interactive Magazine</h4>
+        <h1 class="smb-1">The Long View</h1>
+      </div>
+      <Tabs items={tabItems} alwaysAccordion={true} client:load />
+      
+		</div>
+	</section>
+
+</Layout>
