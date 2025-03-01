@@ -15,6 +15,15 @@ const components = {
         />
       );
     },
+    customHTML: ({ value }) => {
+      if (!value?.html) return null;
+      
+      return (
+        <div
+          dangerouslySetInnerHTML={{ __html: value.html }}
+        />
+      );
+    },
   },
   marks: {
     link: ({ children, value }) => (

@@ -12,7 +12,7 @@ const query = `*[_type == "blog" && category->title == "Real Advice Blog"] | ord
   excerpt[]{
     ...
   },
-  "imageUrl": featuredImage.asset->url + "?w=600&h=400&fit=crop&auto=format",
+  "imageUrl": featuredImage.asset->url + "?w=600&h=400&fit=fill&auto=format",
   category->{title},
   body[]{
     ...,

@@ -75,6 +75,19 @@ export default {
               description: "Alternative text for screen readers",
             }
           ]
+        },
+        {
+          type: "object",
+          name: "customHTML",
+          title: "Custom HTML",
+          fields: [
+            {
+              name: "html",
+              title: "HTML Code",
+              type: "text",
+              description: "Enter custom HTML here (use with caution)",
+            }
+          ]
         }
       ],
       description: "Main blog content",

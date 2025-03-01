@@ -1046,6 +1046,7 @@ footer {
     img {
       width: 100%;
       height: 14vw;
+      // aspect-ratio: auto 800 / 450;
       object-fit: cover;
       transition: all 300ms ease;
       @include max-width(mobile) {
