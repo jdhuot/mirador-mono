@@ -147,6 +147,13 @@ ul, ol {
   }
 }
 
+.list-normal {
+  color: var(--body-blue);  
+  li {
+    font-size: 18px;
+  }
+}
+
 .hr {
   background: var(--blue);
   height: 2px;
@@ -259,8 +266,15 @@ button {
 }
 
 blockquote {
-  color: var(--blue);
-  font-size: 18px;
+  color: var(--black);
+  font-size: 24px;
+  font-style: italic;
+  span {
+    font-weight: 600;
+    display: block;
+    font-size: 16px;
+    font-style: normal;
+  }
 }
 
 .posts-body {
@@ -377,6 +391,13 @@ form {
   }
 }
 
+.logo-pic {
+  object-fit: contain !important;
+  object-position: center !important;
+  background-color: var(--black);
+  padding: 4rem;
+}
+
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -398,6 +419,11 @@ form {
   }
   &.lg {
     gap: 4rem;
+  }
+  &.text {
+    @include max-width(mobile) {
+      gap: 0px !important;
+    }
   }
   &.center {
     justify-content: center;
@@ -843,7 +869,7 @@ form {
     right: 0;
     width: 60%;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
   }
 
   /* Accordion Styles */
