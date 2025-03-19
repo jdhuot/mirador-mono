@@ -17,6 +17,7 @@ const categoryLinks = categories.map((category:any) => ({
 }));
 
 categoryLinks.push({ title: "Magazine", link: "/magazine" });
+const filteredCategoryLinks = categoryLinks.filter((link) => link.title !== "Position Papers");
 
 const menuItems = [
   { title: "Home", link: "/" },
@@ -36,7 +37,7 @@ const menuItems = [
   {
     title: "Resources",
     link: "#",
-    submenu: [...categoryLinks],
+    submenu: [...filteredCategoryLinks],
   },
   { title: "Contact", link: "/contact" },
 ];
@@ -49,11 +50,11 @@ const menuItems = [
         <p>Let's talk. Schedule your FREE, no-obligation consultation with our team today! <a href="/contact">Book here</a></p>
       </div>
     </div>
-    <div class="topbar-2">
+    <!-- <div class="topbar-2">
       <div class="container">
         <p>Effective 2025, The <span>Triopay Unit Trust</span> has been renamed the <span>Mirador Income and Stability Fund</span>.  This name more accurately conveys the fund’s true objective, purpose and benefits. Likewise, any referral to a Triopay process, system, or program etc. refers to the Mirador Income and Stability process, system, or program etc..</p>
       </div>
-    </div>
+    </div> -->
   </section>
   <nav id="nav" class="navbar">
     <div class="navbar-wrapper">
