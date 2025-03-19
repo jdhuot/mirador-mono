@@ -68,7 +68,7 @@ export default function Tabs({ items, alwaysAccordion = false }) {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="accordion-content"
                   >
-                    <img className="tabs-dots" src={dots.src} alt="" />
+                    <img className="tabs-dots" src={dots.src} alt="" data-fade="from_top"/>
                     {typeof item.content === "string" ? (
                       <div dangerouslySetInnerHTML={{ __html: item.content }} />
                     ) : (
@@ -99,7 +99,7 @@ export default function Tabs({ items, alwaysAccordion = false }) {
 
       {!isAccordion && (
         <div className="tabs-content">
-          <img className="tabs-dots" src={dots.src} alt="" />
+          <img className="tabs-dots" src={dots.src} alt="" data-fade="from_top"/>
           {typeof items[activeTab].content === "string" ? (
             <div dangerouslySetInnerHTML={{ __html: items[activeTab].content }} />
           ) : (
