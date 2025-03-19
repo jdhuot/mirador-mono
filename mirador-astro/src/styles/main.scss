@@ -209,6 +209,14 @@ button {
   }
 }
 
+.no-padding {
+  padding: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .button-primary {
   background-color: var(--off-black);
   color: var(--blue);
@@ -538,6 +546,12 @@ form {
 
 .smt-4 {
   margin-top: 4rem;
+}
+.smt-5 {
+  margin-top: 5rem;
+}
+.smt-6 {
+  margin-top: 6rem;
 }
 
 .width-100 {

@@ -3,8 +3,9 @@ export const prerender = false;
 import Layout from '../layouts/Layout.astro';
 
 import { sanityClient } from "../lib/sanity.js";
-import PortableTextRenderer from "../components/PortableTextRenderer.jsx";
+import PlainTextRenderer from "../components/PlainTextRenderer.jsx";
 import fallbackImage from "../assets/fallback.jpg";
+import BlogList from '../components/BlogList.jsx';
 
 const query = `*[_type == "blog" && category->title == "Real Advice Blog"] | order(publishedAt desc) {
   title,
@@ -29,8 +30,43 @@ const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
 
 ---
 
-<Layout 
-  title="Our Team"
+<Layout title="Real Advice Blog">
+  <section class="v-padding our-team-main blog-card-wrapper">
+    <div class="container">
+      <div class="grid-2 forty-sixty lg center smb-6">
+        <div class="flex-v no-padding">
+          <h4>The Mirador</h4>
+          <h1>Real Advice Blog</h1>
+        </div>
+        <div>
+          <p class="smb-0">The Mirador Real Advice Blog is a bi-monthly publication with two purposes:</p>
+          <ul class="sm">
+            <li>Financial rules and guidelines are everywhere, but we help you find reliable sources and share proven advice.</li>
+            <li>The markets create both concern and opportunity. We post regularly to address both.</li>
+          </ul>
+        </div>
+      </div>
+
+      {posts.length > 0 
+        ? <BlogList client:load posts={posts} />
+        : <div class="tac"><h5>No posts found...</h5></div>
+      }
+    </div>
+  </section>
+
+  <section class="v-padding cb-grad">
+    <div class="container">
+      <div class="tac flex-v center mw-700">
+        <h2 class="smb-0">Get In Touch</h2>
+        <p>Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.</p>
+        <a href="/contact"><button class="button-secondary">BOOK A CALL</button></a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<!-- <Layout 
+  title="Real Advice Blog"
 >
   
 	<section class="v-padding our-team-main blog-card-wrapper">
@@ -66,12 +102,12 @@ const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
             </a>
             {post.excerpt &&
               <div class="clamp">
-                <PortableTextRenderer content={post.excerpt} />
+                {PlainTextRenderer(post.excerpt)}
               </div>
             }
             {!post.excerpt &&
               <div class="clamp">
-                <PortableTextRenderer content={post.body} />
+                {PlainTextRenderer(post.body)}
               </div>
             }
             <a href={`/blog/${post.slug.current}`}>
@@ -101,4 +137,4 @@ const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
 			</div>
 		</div>
 	</section>
-</Layout>
+</Layout> -->
