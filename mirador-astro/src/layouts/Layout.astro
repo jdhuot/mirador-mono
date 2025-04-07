@@ -3,8 +3,6 @@ import { manifest } from "astro:ssr-manifest"
 import Nav from "../components/nav.astro"
 import Footer from "../components/Footer.astro"
 import "../styles/main.scss";
-import scrollAnimations from '../scripts/scrollAnimations.js';
-import corpLogo from '../assets/footer-logo.png';
 
 const {title, description, ogImageUrl } = Astro.props;
 ---
@@ -17,7 +15,7 @@ const {title, description, ogImageUrl } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title ? `Mirador Wealth | ${title}` : 'Mirador Wealth'}</title>
 		<meta name="description" content={description ? description : "Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."}>
-		<meta property="og:image" content={ogImageUrl ? ogImageUrl : corpLogo.src}>
+		<meta property="og:image" content={ogImageUrl ? ogImageUrl : '/og.jpg'}>
 		<meta property="og:description" content={description ? description : "Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."}>
 		<link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@400;500;700&display=swap" rel="stylesheet">
 		<style>
