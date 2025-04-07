@@ -4,6 +4,7 @@ import Nav from "../components/nav.astro"
 import Footer from "../components/Footer.astro"
 import "../styles/main.scss";
 import scrollAnimations from '../scripts/scrollAnimations.js';
+import corpLogo from '../assets/footer-logo.png';
 
 const {title, description, ogImageUrl } = Astro.props;
 ---
@@ -16,7 +17,7 @@ const {title, description, ogImageUrl } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title ? `Mirador Wealth | ${title}` : 'Mirador Wealth'}</title>
 		<meta name="description" content={description ? description : "Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."}>
-		<meta property="og:image" content={ogImageUrl ? ogImageUrl : "/og.png"}>
+		<meta property="og:image" content={ogImageUrl ? ogImageUrl : corpLogo.src}>
 		<meta property="og:description" content={description ? description : "Securing your financial future with capital preservation and stable, long term investment income. We are your Wealth Management Partner."}>
 		<link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@400;500;700&display=swap" rel="stylesheet">
 		<style>
@@ -27,6 +28,31 @@ const {title, description, ogImageUrl } = Astro.props;
 				height: 100%;
 			}
 		</style>
+
+		<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11159637408"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'AW-11159637408', { page_path: window.location.pathname });
+
+			document.addEventListener("astro:after-swap", () => {
+				gtag('config', 'AW-11159637408', { page_path: window.location.pathname });
+			})
+		</script>
+
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-WR074CK9W8"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-WR074CK9W8', { page_path: window.location.pathname });
+
+			document.addEventListener("astro:after-swap", () => {
+				gtag('config', 'G-WR074CK9W8', { page_path: window.location.pathname });
+			})
+		</script>
+
 	</head>
 	<body>
 		<Nav />
