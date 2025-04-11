@@ -82,7 +82,7 @@ h5 {
   margin-bottom: 1rem;
 }
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.65rem;
   a {
     color: var(--teal);
     &:hover {
@@ -320,9 +320,9 @@ blockquote {
     margin: 1.5rem 0 1rem;
     line-height: 1.2;
   }
-  p {
-    line-height: 1.8;
-  }
+  // p {
+  //   line-height: 1.8;
+  // }
   h1 {
     margin-top: 2.25rem;
     font-size: 46px;
@@ -346,8 +346,8 @@ blockquote {
   ul, ol {
     margin: 1.5rem 0 2.5rem;
     li {
-      margin-bottom: 1rem;
-      line-height: 1.2;
+      margin-bottom: 1.65rem;
+      line-height: 1.4;
     }
   }
   img {
