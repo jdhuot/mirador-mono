@@ -61,16 +61,18 @@ const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
             </a>
             {post.excerpt &&
               <div class="clamp">
-                <PortableTextRenderer content={post.excerpt} />
+                <p class="smb-0">{new Date(post.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
+                {/* <PortableTextRenderer content={post.excerpt} /> */}
               </div>
             }
             {!post.excerpt &&
               <div class="clamp">
-                <PortableTextRenderer content={post.body} />
+                <p class="smb-0">{new Date(post.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
+                {/* <PortableTextRenderer content={post.body} /> */}
               </div>
             }
             <a href={`/blog/${post.slug.current}`}>
-              <button class="button-primary sm">Read More</button>
+              <button class="button-primary sm">View Post</button>
             </a>
           </div>
         ))}
