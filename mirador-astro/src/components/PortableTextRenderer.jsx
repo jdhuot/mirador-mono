@@ -1,4 +1,5 @@
 import { PortableText } from "@portabletext/react";
+import { urlFor } from '../lib/sanity';
 
 const components = {
   types: {
@@ -9,7 +10,8 @@ const components = {
       }
       return (
         <img
-          src={value.url}
+          // src={value.src}
+          src={urlFor(value).width(800).format('webp').url()}
           alt={value.alt || "Blog Image"}
           style={{ maxWidth: "100%", height: "auto", borderRadius: "8px" }}
         />

@@ -1,16 +1,9 @@
 ---
 export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
-import { sanityClient } from "../../lib/sanity.js";
+import { sanityClient, urlFor } from "../../lib/sanity.js";
 import PortableTextRenderer from "../../components/PortableTextRenderer.jsx";
 import PlainTextRenderer from "../../components/PlainTextRenderer.jsx";
-// import imageUrlBuilder from '@sanity/image-url';
-
-// const builder = imageUrlBuilder(sanityClient);
-
-// const fetchUrl = (image) => {
-//   return builder(image).width(800).format('webp').url();
-// }
 
 const { slug } = Astro.params;
 
@@ -20,7 +13,7 @@ const query = `*[_type == "blog" && slug.current == $slug][0] {
   metaDescription,
   metaTitle,
   excerpt,
-  "imageUrl": featuredImage.asset->url,
+  "imageUrl": featuredImage,
   body[]{
     ...,
     _type == "image" => {
@@ -45,7 +38,7 @@ if (!post) {
 <Layout 
   title={post.title}
   description={post.metaDescription ? post.metaDescription : post.excerpt ? PlainTextRenderer(post.excerpt) : `Mirador Wealth Management - ${post.title} Blog Post`}
-  ogImageUrl={post.imageUrl}
+  ogImageUrl={urlFor(post.imageUrl).width(800).format('webp').url()}
 >
   <section class="">
     <div class="container flex-v mw-800">

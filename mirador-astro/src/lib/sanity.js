@@ -1,5 +1,8 @@
 import { createClient } from "@sanity/client";
 import dotenv from "dotenv";
+import imageUrlBuilder from '@sanity/image-url';
+
+
 dotenv.config();
 
 export const sanityClient = createClient({
@@ -9,3 +12,9 @@ export const sanityClient = createClient({
   apiVersion: "2024-02-01", // Use the latest API version
   perspective: "published",
 });
+
+const builder = imageUrlBuilder(sanityClient);
+
+export function urlFor(source) {
+  return builder.image(source);
+}

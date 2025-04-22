@@ -1,6 +1,6 @@
 /* CSS Reset */
 
-@import "mixins";
+@use "mixins" as *;
 
 :root {
   --light-blue: #8fbee6;

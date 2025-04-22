@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // Define breakpoints
 $breakpoints: (
   mobile: 768px,
@@ -7,8 +9,8 @@ $breakpoints: (
 
 // Mixin for media queries
 @mixin max-width($size) {
-  @if map-has-key($breakpoints, $size) {
-    @media (max-width: #{map-get($breakpoints, $size)}) {
+  @if map.has-key($breakpoints, $size) {
+    @media (max-width: #{map.get($breakpoints, $size)}) {
       @content;
     }
   } @else {
@@ -17,8 +19,8 @@ $breakpoints: (
 }
 
 @mixin min-width($size) {
-  @if map-has-key($breakpoints, $size) {
-    @media (min-width: #{map-get($breakpoints, $size)}) {
+  @if map.has-key($breakpoints, $size) {
+    @media (min-width: #{map.get($breakpoints, $size)}) {
       @content;
     }
   } @else {
