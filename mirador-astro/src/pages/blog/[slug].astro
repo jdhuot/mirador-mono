@@ -1,7 +1,7 @@
 ---
-export const prerender = false;
+export const prerender = true;
 import Layout from "../../layouts/Layout.astro";
-import { sanityClient, urlFor } from "../../lib/sanity.js";
+import { sanityClient, urlFor, getAllPosts } from "../../lib/sanity.js";
 import PortableTextRenderer from "../../components/PortableTextRenderer.jsx";
 import PlainTextRenderer from "../../components/PlainTextRenderer.jsx";
 
@@ -31,6 +31,13 @@ const post = await sanityClient.fetch(query, { slug });
 
 if (!post) {
   throw new Error("Post not found");
+}
+
+export async function getStaticPaths() {
+  const slugs = await getAllPosts() || [];
+  return slugs.map((slug: any) => ({
+    params: { slug }
+  }));
 }
 
 ---
