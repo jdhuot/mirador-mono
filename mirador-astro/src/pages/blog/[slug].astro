@@ -35,8 +35,10 @@ if (!post) {
 
 export async function getStaticPaths() {
   const slugs = await getAllPosts() || [];
-  return slugs.map((slug: any) => ({
-    params: { slug }
+  return slugs
+  .filter(slug => slug?.current)
+  .map(slug => ({
+    params: { slug: slug.current }
   }));
 }
 
@@ -45,7 +47,7 @@ export async function getStaticPaths() {
 <Layout 
   title={post.title}
   description={post.metaDescription ? post.metaDescription : post.excerpt ? PlainTextRenderer(post.excerpt) : `Mirador Wealth Management - ${post.title} Blog Post`}
-  ogImageUrl={urlFor(post.imageUrl).width(800).format('webp').url()}
+  ogImageUrl={post.imageUrl ? urlFor(post.imageUrl).width(800).format('webp').url() : undefined}
 >
   <section class="">
     <div class="container flex-v mw-800">
