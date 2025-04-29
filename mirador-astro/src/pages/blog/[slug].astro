@@ -35,10 +35,10 @@ if (!post) {
 
 export async function getStaticPaths() {
   const slugs = await getAllPosts() || [];
-  return slugs
-  .filter(slug => slug?.current)
-  .map(slug => ({
-    params: { slug: slug.current }
+
+  console.log("slugs: ", slugs)
+  return slugs.map((slug) => ({
+    params: { slug }
   }));
 }
 
