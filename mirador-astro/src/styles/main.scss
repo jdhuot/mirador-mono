@@ -1167,6 +1167,40 @@ footer {
   }
 }
 
+.feed-hero {
+  padding: 8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -5rem;
+  p {
+    margin-bottom: 0px;
+  }
+}
+
+.feed-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.feed-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  .text {
+    p {
+      font-size: 1.65rem !important;
+      line-height: 1.2;
+    }
+  }
+}
+
+
 .magazine-iframe {
   @include max-width(mobile) {
     height: 120vw;

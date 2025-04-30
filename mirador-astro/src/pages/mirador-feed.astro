@@ -5,6 +5,8 @@ import Layout from '../layouts/Layout.astro';
 import { sanityClient } from "../lib/sanity.js";
 import PostList from '../components/PostList.jsx';
 
+import bgImage from '../assets/feed/feed-bg-wide.png';
+
 const query = `*[_type == "socialPost"] | order(publishedAt desc) {
   ...,
   text[]{
@@ -21,20 +23,26 @@ const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
 ---
 
 <Layout title="Real Advice Blog">
+
+  
   <section class="v-padding our-team-main blog-card-wrapper">
     <div class="container">
-      <div class="flex-v no-padding center tac">
-        <!-- <h4>The Mirador</h4> -->
-        <h1>The Mirador Feed</h1>
-        <div class="mw-400">
-          <p>Stay up to date with the latest insights, news, and quick takes from the Mirador team.</p>
+      <div class="relative feed-hero">
+        <img src={bgImage.src} class="feed-bg" alt="Mirador Feed BG" />
+        <div class="flex-v no-padding center tac">
+          <h4>The Mirador Feed</h4>
+          <h1>Welcome to the Jungle</h1>
+          <div class="mw-400">
+            <p>Stay up to date with the latest insights, news, and quick takes from the Mirador team.</p>
+          </div>
         </div>
       </div>
-
-      {posts.length > 0 
-        ? <PostList client:load posts={posts} />
-        : <div class="tac"><h5>No posts found...</h5></div>
-      }
+      <div class="feed-wrapper">
+        {posts.length > 0 
+          ? <PostList client:load posts={posts} />
+          : <div class="tac"><h5>No posts found...</h5></div>
+        }
+      </div>
     </div>
   </section>
 
