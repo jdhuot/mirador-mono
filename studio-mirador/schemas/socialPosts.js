@@ -6,7 +6,8 @@ export default {
     {
       name: "text",
       title: "Post Text",
-      type: "text",
+      type: "array",
+      of: [{ type: "block" }],
       description: "Main content of the post from Buffer",
       validation: Rule => Rule.required()
     },
