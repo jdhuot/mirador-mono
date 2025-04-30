@@ -39,6 +39,12 @@ export default {
       description: "Optional call-to-action link to accompany the post"
     },
     {
+      name: "tags",
+      title: "Tags",
+      type: "text",
+      description: "Optional tags"
+    },
+    {
       name: "publishedAt",
       title: "Published At",
       type: "datetime",
