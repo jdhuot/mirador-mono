@@ -1,0 +1,59 @@
+import { useState } from "react";
+import fallbackImage from "../assets/fallback.jpg";
+import PortableTextRendererSimple from "./PortableTextRendererSimple.jsx";
+
+export default function PostList({ posts }) {
+  const POSTS_PER_PAGE = 12;
+  const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
+
+  const handleLoadMore = () => {
+    console.log("Clicked load more");
+    setVisibleCount(prev => prev + POSTS_PER_PAGE);
+  }
+
+  const visiblePosts = posts.slice(0, visibleCount);
+
+
+  return (
+    <>
+      <div className="flex-v no-gap">
+        {visiblePosts.map((post) => (
+          <div className="post-card" key={post.slug.current}>
+            <div>
+              <div className="flex">
+                <p className="ct-muted body-sm">{new Date(post.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
+                {post.tags && post.tags !== "" &&
+                  <div className="flex">
+                    {post.tags && post.tags.split(',').map((tag, i) => {
+                      return (
+                        <p key={i} class="tag">{tag}</p>
+                      );
+                    })
+                    }
+                  </div>
+                }
+              </div>
+              <PortableTextRendererSimple content={post.text} />
+              {post.ctaLink &&
+                <a href={post.ctaLink} target="_blank">
+                  <button className="button-primary sm">Read More</button>
+                </a>
+              }
+            </div>
+            <div className="post-img">
+              {post.imageUrl &&
+                <img src={post.imageUrl} alt="" />
+              }
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {visibleCount < posts.length && (
+        <div className="tac smt-6">
+          <button className="button-secondary" onClick={handleLoadMore}>Load More</button>
+        </div>
+      )}
+    </>
+  );
+}

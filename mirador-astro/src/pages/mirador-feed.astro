@@ -1,0 +1,50 @@
+---
+export const prerender = true;
+import Layout from '../layouts/Layout.astro';
+
+import { sanityClient } from "../lib/sanity.js";
+import PostList from '../components/PostList.jsx';
+
+const query = `*[_type == "socialPost"] | order(publishedAt desc) {
+  ...,
+  text[]{
+    ...,
+    _type == "image" => {
+      "url": asset->url,
+      alt
+    }
+  },
+}`;
+
+const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
+
+---
+
+<Layout title="Real Advice Blog">
+  <section class="v-padding our-team-main blog-card-wrapper">
+    <div class="container">
+      <div class="flex-v no-padding center tac">
+        <!-- <h4>The Mirador</h4> -->
+        <h1>The Mirador Feed</h1>
+        <div class="mw-400">
+          <p>Stay up to date with the latest insights, news, and quick takes from the Mirador team.</p>
+        </div>
+      </div>
+
+      {posts.length > 0 
+        ? <PostList client:load posts={posts} />
+        : <div class="tac"><h5>No posts found...</h5></div>
+      }
+    </div>
+  </section>
+
+  <section class="v-padding cb-grad">
+    <div class="container">
+      <div class="tac flex-v center mw-700">
+        <h2 class="smb-0">Get In Touch</h2>
+        <p>Click below to get started with your investment journey. You’ll receive a free call back and initial consult with our team.</p>
+        <a href="/contact"><button class="button-secondary">BOOK A CALL</button></a>
+      </div>
+    </div>
+  </section>
+</Layout>
