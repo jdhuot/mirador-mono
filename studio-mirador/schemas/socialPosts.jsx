@@ -33,6 +33,12 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: "ctaLink",
+      title: "CTA Link",
+      type: "url",
+      description: "Optional call-to-action link to accompany the post"
+    },
+    {
       name: "publishedAt",
       title: "Published At",
       type: "datetime",
@@ -42,15 +48,23 @@ export default {
   ],
   preview: {
     select: {
-      title: "text",
-      media: "image",
-      subtitle: "publishedAt"
+      title: "publishedAt",
+      imageUrl: "imageUrl",
+      blocks: "text"
     },
-    prepare({ title, media, subtitle }) {
+    prepare({ title, imageUrl, blocks }) {
+      // Extract plain text from the first block
+      const block = (blocks || []).find(block => block._type === "block");
+      const blockText = block
+        ? block.children.map(child => child.text).join("")
+        : "(No content)";
+  
       return {
-        title: title?.slice(0, 60) || "Untitled",
-        media,
-        subtitle: subtitle ? new Date(subtitle).toLocaleDateString() : ""
+        title: blockText.slice(0, 60) || "(Untitled)",
+        subtitle: title ? new Date(title).toLocaleDateString() : "",
+        media: imageUrl
+        ? () => <img src={imageUrl} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+        : undefined
       };
     }
   }
