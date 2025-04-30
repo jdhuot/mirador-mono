@@ -1,0 +1,4 @@
+[build]
+  base = "studio-mirador"
+  command = "sanity build"
+  publish = "dist"
