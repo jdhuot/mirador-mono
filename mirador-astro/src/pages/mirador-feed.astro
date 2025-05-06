@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import { sanityClient } from "../lib/sanity.js";
 import PostList from '../components/PostList.jsx';
 
-import bgImage from '../assets/feed/feed-bg-wide.png';
+import bgImage from '../assets/feed/feed-bg.jpg';
 
 const query = `*[_type == "socialPost"] | order(publishedAt desc) {
   ...,
@@ -31,17 +31,29 @@ const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
         <img src={bgImage.src} class="feed-bg" alt="Mirador Feed BG" />
         <div class="flex-v no-padding center tac">
           <h4>The Mirador Feed</h4>
-          <h1>Welcome to the Jungle</h1>
-          <div class="mw-400">
-            <p>Stay up to date with the latest insights, news, and quick takes from the Mirador team.</p>
+          <div class="mw-800">
+            <h1 class="ct-teal">You can Observe a lot by Just Watching</h1>
+            <p class="ct-teal tar"><strong>— Yogi Berra</strong></p>
+          </div>
+          <div class="mw-700">
+            <p>Stay up to date with what we are Observing and other quick takes and insights
+              regarding the economy, commerce, the markets, companies and... <br/><strong>Portfolio Management for High Income and Comfortable Stability</strong></p>
           </div>
         </div>
       </div>
-      <div class="feed-wrapper">
-        {posts.length > 0 
-          ? <PostList client:load posts={posts} />
-          : <div class="tac"><h5>No posts found...</h5></div>
-        }
+      <div class="feed-grid">
+        <div class="sidebar">
+          <p>Expert Watching of the Facts (the data)..</p>
+          <p>..Leads to Wise Observations..</p>
+          <p>..Leads to Timely Action..</p>
+          <p>..Results in Top-Tier Portfolio Panagement</p>
+        </div>
+        <div class="feed-wrapper">
+          {posts.length > 0 
+            ? <PostList client:load posts={posts} />
+            : <div class="tac"><h5>No posts found...</h5></div>
+          }
+        </div>
       </div>
     </div>
   </section>
