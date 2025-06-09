@@ -1046,6 +1046,32 @@ footer {
     width: 100% !important;
     max-width: 1200px !important;
   }
+
+
+  .footer-form-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100%;
+    .checkfirst-link {
+      align-self: flex-end;
+      margin-bottom: 2rem;
+    
+      img {
+        max-width: 200px;
+      }
+      @include max-width(mobile) {
+        align-self: center;
+        margin-top: 2rem;
+        img {
+          max-width: 160px;
+        }
+      }
+    }
+  }
+
 }
 
 .team-wrapper {
