@@ -11,7 +11,7 @@ const components = {
       return (
         <img
           // src={value.src}
-          src={urlFor(value).width(800).format('webp').url()}
+          src={urlFor(value).width(1600).format('webp').url()}
           alt={value.alt || "Blog Image"}
           style={{ maxWidth: "100%", height: "auto", borderRadius: "8px" }}
         />
