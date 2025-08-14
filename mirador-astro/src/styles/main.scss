@@ -1055,6 +1055,23 @@ footer {
     justify-content: space-between;
 
     height: 100%;
+    margin-top: -0.75rem;
+
+    p, li {
+      font-size: 1rem;
+    }
+    ul {
+      @media (min-width: 1300px) {
+        grid-template-columns: auto auto;
+      }
+      padding-left: 1.75rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      row-gap: 0px;
+      margin-bottom: 0.25rem;
+    }
+
     .checkfirst-link {
       align-self: flex-end;
       margin-bottom: 2rem;
@@ -1068,6 +1085,42 @@ footer {
         img {
           max-width: 160px;
         }
+      }
+    }
+    #mlb2-29580232.ml-form-embedContainer .ml-form-align-center {
+      @include min-width(tablet) {
+        text-align: right !important;
+      }
+      input {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        font-family: var(--heading-font) !important;
+      }
+      button {
+        font-family: var(--heading-font) !important;
+        text-transform: uppercase !important;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+  }
+
+  .footer-logos-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 4rem;
+    gap: 2rem;
+    img {
+      max-height: 60px;
+    }
+    @include max-width(mobile) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        max-width: 140px;
+        margin: auto;
       }
     }
   }
