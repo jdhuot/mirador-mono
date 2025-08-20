@@ -48,7 +48,7 @@ export async function GET(ctx) {
       category->title == "Real Advice Blog" &&
       defined(slug.current) &&
       publishedAt <= now()
-    ] | order(publishedAt desc)[0...8]{
+    ] | order(publishedAt desc)[0...10]{
       title,
       "slug": slug.current,
       publishedAt,
@@ -60,11 +60,14 @@ export async function GET(ctx) {
 
   const site = ctx.site; // make sure "site" is set in astro.config.mjs
 
+  
   return rss({
-    title: 'The Mirador — Real Advice Blog',
+    title: 'Mirador — Real Advice Blog',
     description: 'Latest posts from the Real Advice Blog.',
     site,
     items: posts.map((p) => {
+      const path = `/blog/${p.slug}/`;
+      const url  = new URL(path, site).toString();
       const link = `/blog/${p.slug}/`;
 
       const excerptText = (p.excerpt?.length
@@ -80,7 +83,7 @@ export async function GET(ctx) {
       const descriptionHtml = `
         ${img ? `<p><img src="${img}" alt="${escapeHtml(p.title)}" /></p>` : ''}
         <p>${escapeHtml(excerpt)}</p>
-        <p><a href="${link}">Read the full article →</a></p>
+        <p><a href="${url}">Read the full article →</a></p>
       `.trim();
 
       return {
@@ -91,7 +94,7 @@ export async function GET(ctx) {
         // Helps some readers; MailerLite will use the inline <img> in description.
         customData: `
           ${img ? `<enclosure url="${img}" type="${mime}" />` : ''}
-          <guid isPermaLink="true">${site}${link}</guid>
+          <guid isPermaLink="true">${url}</guid>
         `
 
       };
