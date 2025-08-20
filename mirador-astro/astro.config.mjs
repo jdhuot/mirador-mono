@@ -9,6 +9,7 @@ import netlify from '@astrojs/netlify';
 // https://astro.build/config
 export default defineConfig({
   integrations: [react()],
+  site: 'https://miradorwealth.com',
 
   vite: {
     assetsInclude: ['**/*.m4v'], // Treat .m4v files as assets
