@@ -1,31 +1,53 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Tabs from '../components/Tabs.jsx';
+import { getMagazinePage } from '../lib/sanity.js'
 
-import graphImage from '../assets/contact/graph.png';
+const page = await getMagazinePage();
+
+console.log("mag page: ", page)
 
 
-const tabItems = [
-  {
-    title: "Volume 1",
+const tabItems = [];
+
+for (let issue of page?.issues) {
+  if ((!issue.title || issue.title == "") && (!issue.url || issue.url == "")) return;
+  const newIssueObject = {
+    title: issue.title,
+    slug: issue.slug?.current ?? issue.slug,
     content: `
       <div class="flex-v relative">
-        <iframe class="magazine-iframe" src="https://online.fliphtml5.com/voto/reap/#p=1" width="100%" height="800px" frameborder="0"></iframe>
-        <a href="https://online.fliphtml5.com/voto/reap/#p=1" target="_blank">
+        <iframe class="magazine-iframe" src="${issue.url}" width="100%" height="800px" frameborder="0"></iframe>
+        <a href="${issue.url}" target="_blank">
           <button class="button-primary">View Full Screen</button>
         </a>
       </div>
         `,
-  },
-  {
-    title: "Volume 2",
-    content: `
-      <div class="flex-v relative">
-        <p>Coming soon..</p>
-      </div>
-        `,
-  },
-];
+  }
+  tabItems.push(newIssueObject);
+}
+
+// const tabItems = [
+//   {
+//     title: "Volume 1",
+//     content: `
+//       <div class="flex-v relative">
+//         <iframe class="magazine-iframe" src="https://online.fliphtml5.com/voto/reap/#p=1" width="100%" height="800px" frameborder="0"></iframe>
+//         <a href="https://online.fliphtml5.com/voto/reap/#p=1" target="_blank">
+//           <button class="button-primary">View Full Screen</button>
+//         </a>
+//       </div>
+//         `,
+//   },
+//   {
+//     title: "Volume 2",
+//     content: `
+//       <div class="flex-v relative">
+//         <p>Coming soon..</p>
+//       </div>
+//         `,
+//   },
+// ];
 ---
 
 <Layout title="The Long View Magazine">
@@ -35,7 +57,20 @@ const tabItems = [
         <h4>Interactive Magazine</h4>
         <h1 class="smb-1">The Long View</h1>
       </div>
-      <Tabs items={tabItems} alwaysAccordion={true} client:load />
+      {tabItems && tabItems.length > 0 &&
+        // <Tabs items={tabItems} alwaysAccordion={true} client:load />
+        <Tabs
+          items={tabItems}
+          alwaysAccordion={true}
+          client:load
+          /** NEW: open tab from ?issue=volume-3 */
+          initialFromQuery={true}
+          queryParam="issue"
+          itemKey="slug"
+          /** Optional: keep URL in sync when user clicks tabs */
+          syncQueryOnClick={true}
+        />
+      }
       
 		</div>
 	</section>

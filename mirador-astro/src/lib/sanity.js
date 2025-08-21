@@ -19,6 +19,13 @@ export function urlFor(source) {
   return builder.image(source);
 }
 
+export async function getMagazinePage() {
+  return await sanityClient.fetch(`*[_type == "magazinePage"][0]{
+      ...,
+      issues[]
+    }`);
+}
+
 export async function getAllPosts() {
   return await sanityClient.fetch(`*[_type == "blog" && defined(slug.current)][].slug.current`);
 }

@@ -1,43 +1,91 @@
+// Tabs.jsx
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import dots from "../assets/mirador-wealth-graphic-2.png";
 
-export default function Tabs({ items, alwaysAccordion = false }) {
-  const [activeTab, setActiveTab] = useState(0);
+export default function Tabs({
+  items,
+  alwaysAccordion = false,
+  /** NEW (optional): which tab to start on if no query is present */
+  initialIndex = 0,
+  /** NEW (optional): read initial tab from URL, e.g. ?issue=volume-3 */
+  initialFromQuery = false,
+  /** NEW (optional): the query param to read/write */
+  queryParam = "tab",
+  /** NEW (optional): which property on each item to match, e.g. "slug" */
+  itemKey = "slug",
+  /** NEW (optional): update the URL when user changes tabs */
+  syncQueryOnClick = false,
+}) {
+  const [activeTab, setActiveTab] = useState(initialIndex);
   const [isAccordion, setIsAccordion] = useState(alwaysAccordion);
-  const [userClicked, setUserClicked] = useState(false); // ✅ Track if user clicked a tab
-  const accordionRefs = useRef([]); // Store references to accordion sections
+  const [userClicked, setUserClicked] = useState(false);
+  const accordionRefs = useRef([]);
+
+  // Apply initial tab from query (?issue=volume-3) on mount / back/forward
+  useEffect(() => {
+    if (!initialFromQuery) return;
+
+    const applyFromQuery = () => {
+      const params = new URLSearchParams(window.location.search);
+      const v = params.get(queryParam);
+      if (!v) return; // leave whatever initialIndex was
+      const idx = items.findIndex(
+        (it) => String(it?.[itemKey] ?? "")
+          .toLowerCase() === v.toLowerCase()
+      );
+      if (idx >= 0) setActiveTab(idx);
+    };
+
+    applyFromQuery();
+    const onPop = () => applyFromQuery();
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, [initialFromQuery, queryParam, itemKey, items]);
 
   // Detect if the screen should switch to accordion mode
   useEffect(() => {
     if (!alwaysAccordion) {
-      const checkScreenSize = () => {
-        setIsAccordion(window.innerWidth < 992);
-      };
-
+      const checkScreenSize = () => setIsAccordion(window.innerWidth < 992);
       checkScreenSize();
       window.addEventListener("resize", checkScreenSize);
       return () => window.removeEventListener("resize", checkScreenSize);
     }
   }, [alwaysAccordion]);
 
-  // ✅ Only scroll when a user clicks, not on page load
+  // Smooth scroll when user expands an accordion section
   useEffect(() => {
     if (isAccordion && activeTab !== -1 && userClicked) {
-      const activeAccordion = accordionRefs.current[activeTab];
-      if (activeAccordion) {
+      const el = accordionRefs.current[activeTab];
+      if (el) {
         setTimeout(() => {
           requestAnimationFrame(() => {
-            const offset = 140; // Adjust this based on navbar height
-            const elementPosition = activeAccordion.getBoundingClientRect().top + window.scrollY;
-            const offsetPosition = elementPosition - offset;
-
-            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+            const offset = 140;
+            const top = el.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: "smooth" });
           });
-        }, 300); // Delay to ensure animation is fully expanded
+        }, 300);
       }
     }
-  }, [activeTab, isAccordion, userClicked]); // ✅ Only runs when userClicked is true
+  }, [activeTab, isAccordion, userClicked]);
+
+  // Helper to set active tab and (optionally) sync query param
+  const activate = (nextIndex) => {
+    setUserClicked(true);
+    setActiveTab(nextIndex);
+
+    if (syncQueryOnClick) {
+      const url = new URL(window.location.href);
+      if (nextIndex >= 0) {
+        const key = items[nextIndex]?.[itemKey];
+        if (key != null) url.searchParams.set(queryParam, String(key));
+        else url.searchParams.delete(queryParam);
+      } else {
+        url.searchParams.delete(queryParam);
+      }
+      history.pushState({}, "", url);
+    }
+  };
 
   return (
     <div className={`tabs-wrapper ${isAccordion ? "accordion" : ""}`}>
@@ -52,10 +100,7 @@ export default function Tabs({ items, alwaysAccordion = false }) {
             >
               <button
                 className={`accordion-header ${activeTab === index ? "active" : ""}`}
-                onClick={() => {
-                  setUserClicked(true); // ✅ Mark that the user clicked
-                  setActiveTab(activeTab === index ? -1 : index);
-                }}
+                onClick={() => activate(activeTab === index ? -1 : index)}
               >
                 {item.title}
               </button>
@@ -68,7 +113,7 @@ export default function Tabs({ items, alwaysAccordion = false }) {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="accordion-content"
                   >
-                    <img className="tabs-dots" src={dots.src} alt="" data-fade="from_top"/>
+                    <img className="tabs-dots" src={dots.src} alt="" data-fade="from_top" />
                     {typeof item.content === "string" ? (
                       <div dangerouslySetInnerHTML={{ __html: item.content }} />
                     ) : (
@@ -86,10 +131,7 @@ export default function Tabs({ items, alwaysAccordion = false }) {
             <button
               key={index}
               className={`${activeTab === index ? "active" : ""}`}
-              onClick={() => {
-                setUserClicked(true); // ✅ Mark that the user clicked
-                setActiveTab(index);
-              }}
+              onClick={() => activate(index)}
             >
               {item.title}
             </button>
@@ -99,7 +141,7 @@ export default function Tabs({ items, alwaysAccordion = false }) {
 
       {!isAccordion && (
         <div className="tabs-content">
-          <img className="tabs-dots" src={dots.src} alt="" data-fade="from_top"/>
+          <img className="tabs-dots" src={dots.src} alt="" data-fade="from_top" />
           {typeof items[activeTab].content === "string" ? (
             <div dangerouslySetInnerHTML={{ __html: items[activeTab].content }} />
           ) : (
@@ -120,6 +162,7 @@ export default function Tabs({ items, alwaysAccordion = false }) {
 // export default function Tabs({ items, alwaysAccordion = false }) {
 //   const [activeTab, setActiveTab] = useState(0);
 //   const [isAccordion, setIsAccordion] = useState(alwaysAccordion);
+//   const [userClicked, setUserClicked] = useState(false); // ✅ Track if user clicked a tab
 //   const accordionRefs = useRef([]); // Store references to accordion sections
 
 //   // Detect if the screen should switch to accordion mode
@@ -135,22 +178,23 @@ export default function Tabs({ items, alwaysAccordion = false }) {
 //     }
 //   }, [alwaysAccordion]);
 
+//   // ✅ Only scroll when a user clicks, not on page load
 //   useEffect(() => {
-//     if (isAccordion && activeTab !== -1) {
+//     if (isAccordion && activeTab !== -1 && userClicked) {
 //       const activeAccordion = accordionRefs.current[activeTab];
 //       if (activeAccordion) {
 //         setTimeout(() => {
 //           requestAnimationFrame(() => {
-//             const offset = 140; // Adjust this based on your navbar height
+//             const offset = 140; // Adjust this based on navbar height
 //             const elementPosition = activeAccordion.getBoundingClientRect().top + window.scrollY;
 //             const offsetPosition = elementPosition - offset;
-  
+
 //             window.scrollTo({ top: offsetPosition, behavior: "smooth" });
 //           });
-//         }, 300); // Increased delay to ensure animation is fully expanded
+//         }, 300); // Delay to ensure animation is fully expanded
 //       }
 //     }
-//   }, [activeTab, isAccordion]);
+//   }, [activeTab, isAccordion, userClicked]); // ✅ Only runs when userClicked is true
 
 //   return (
 //     <div className={`tabs-wrapper ${isAccordion ? "accordion" : ""}`}>
@@ -160,12 +204,15 @@ export default function Tabs({ items, alwaysAccordion = false }) {
 //             <div
 //               key={index}
 //               className="accordion-item"
-//               id={`accordion-item-${index}`} // Assign a unique ID
-//               ref={(el) => (accordionRefs.current[index] = el)} // Store ref
+//               id={`accordion-item-${index}`}
+//               ref={(el) => (accordionRefs.current[index] = el)}
 //             >
 //               <button
 //                 className={`accordion-header ${activeTab === index ? "active" : ""}`}
-//                 onClick={() => setActiveTab(activeTab === index ? -1 : index)}
+//                 onClick={() => {
+//                   setUserClicked(true); // ✅ Mark that the user clicked
+//                   setActiveTab(activeTab === index ? -1 : index);
+//                 }}
 //               >
 //                 {item.title}
 //               </button>
@@ -178,7 +225,7 @@ export default function Tabs({ items, alwaysAccordion = false }) {
 //                     transition={{ duration: 0.3, ease: "easeInOut" }}
 //                     className="accordion-content"
 //                   >
-//                     <img className="tabs-dots" src={dots.src} alt="" />
+//                     <img className="tabs-dots" src={dots.src} alt="" data-fade="from_top"/>
 //                     {typeof item.content === "string" ? (
 //                       <div dangerouslySetInnerHTML={{ __html: item.content }} />
 //                     ) : (
@@ -196,7 +243,10 @@ export default function Tabs({ items, alwaysAccordion = false }) {
 //             <button
 //               key={index}
 //               className={`${activeTab === index ? "active" : ""}`}
-//               onClick={() => setActiveTab(index)}
+//               onClick={() => {
+//                 setUserClicked(true); // ✅ Mark that the user clicked
+//                 setActiveTab(index);
+//               }}
 //             >
 //               {item.title}
 //             </button>
@@ -206,7 +256,7 @@ export default function Tabs({ items, alwaysAccordion = false }) {
 
 //       {!isAccordion && (
 //         <div className="tabs-content">
-//           <img className="tabs-dots" src={dots.src} alt="" />
+//           <img className="tabs-dots" src={dots.src} alt="" data-fade="from_top"/>
 //           {typeof items[activeTab].content === "string" ? (
 //             <div dangerouslySetInnerHTML={{ __html: items[activeTab].content }} />
 //           ) : (

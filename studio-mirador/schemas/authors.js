@@ -1,4 +1,3 @@
-// force push
 export default {
   name: "author",
   title: "Blog Author",

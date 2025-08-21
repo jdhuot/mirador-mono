@@ -21,22 +21,6 @@ export default function PostList({ posts }) {
           <div className="post-card" key={post.slug.current}>
             <div>
               <div className="flex">
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-calendar"
-              >
-                <rect x="2.5" y="3" width="11" height="11" rx="1.5" ry="1.5" />
-                <line x1="10" y1="1.5" x2="10" y2="4" />
-                <line x1="6" y1="1.5" x2="6" y2="4" />
-                <line x1="2.5" y1="6.5" x2="13.5" y2="6.5" />
-              </svg> */}
                 <p className="ct-muted body-sm">{new Date(post.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
                 {post.tags && post.tags !== "" &&
                   <div className="flex">

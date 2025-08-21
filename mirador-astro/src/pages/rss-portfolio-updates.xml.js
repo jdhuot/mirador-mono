@@ -1,15 +1,8 @@
-// src/pages/rss-real-advice.xml.js
+// src/pages/rss-portfolio-updates.xml.js
 import rss from '@astrojs/rss';
 import { sanityClient } from '../lib/sanity.js';
 
-// ---- helpers ----
-function blocksToPlainText(blocks = []) {
-  return blocks
-    .filter((b) => b && b._type === 'block')
-    .map((b) => (b.children || []).map((c) => c.text || '').join(''))
-    .join('\n\n');
-}
-
+// --- tiny helpers (same style as your other feed) ---
 function truncateAtWord(str = '', max = 240) {
   const s = str.replace(/\s+/g, ' ').trim();
   if (s.length <= max) return s;
@@ -17,21 +10,14 @@ function truncateAtWord(str = '', max = 240) {
   const i = cut.lastIndexOf(' ');
   return ((i > 0 ? cut.slice(0, i) : cut).trim()) + '…';
 }
-
 function escapeHtml(s = '') {
   return s.replace(/[&<>"']/g, (ch) => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;',
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
   })[ch]);
 }
-
 function imageForEmail(url) {
   return url ? `${url}?w=1200&h=628&fit=fill&auto=format` : '';
 }
-
 function mimeFromUrlOrDefault(url, fallback = 'image/jpeg') {
   const ext = (url || '').split('?')[0].split('.').pop()?.toLowerCase();
   if (ext === 'png') return 'image/png';
@@ -40,44 +26,37 @@ function mimeFromUrlOrDefault(url, fallback = 'image/jpeg') {
   return fallback;
 }
 
-// ---- endpoint ----
 export async function GET(ctx) {
   const posts = await sanityClient.fetch(`
     *[
       _type == "blog" &&
-      category->title == "Real Advice Blog" &&
+      category->title == "Portfolio Updates" &&
       defined(slug.current) &&
       publishedAt <= now()
     ] | order(publishedAt desc)[0...10]{
       title,
       "slug": slug.current,
       publishedAt,
-      excerpt,
-      body,
+      // Plain text only; ignores inline images in body.
+      "excerptPlain": coalesce(pt::text(excerpt), pt::text(body)),
       featuredImage{ asset->{ url, mimeType } }
     }
   `);
 
-  const site = ctx.site; // make sure "site" is set in astro.config.mjs
+  const site = ctx.site; // ensure astro.config.mjs has site: 'https://yourdomain.com'
 
-  
   return rss({
-    title: 'Mirador — Real Advice Blog',
-    description: 'Latest posts from the Real Advice Blog.',
+    title: 'Mirador — Portfolio Updates',
+    description: 'Latest Portfolio Update reports.',
     site,
     items: posts.map((p) => {
       const path = `/blog/${p.slug}/`;
       const url  = new URL(path, site).toString();
-      const link = `/blog/${p.slug}/`;
 
-      const excerptText = (p.excerpt?.length
-        ? blocksToPlainText(p.excerpt)
-        : blocksToPlainText(p.body)) || '';
-
-      const excerpt = truncateAtWord(excerptText, 240);
+      const excerpt = truncateAtWord(p.excerptPlain || '', 240);
 
       const baseImg = p.featuredImage?.asset?.url || '';
-      const img = imageForEmail(baseImg);
+      const img  = imageForEmail(baseImg);
       const mime = p.featuredImage?.asset?.mimeType || mimeFromUrlOrDefault(baseImg);
 
       const descriptionHtml = `
@@ -88,14 +67,12 @@ export async function GET(ctx) {
       return {
         title: p.title,
         pubDate: new Date(p.publishedAt),
-        link,
+        link: url, // absolute
         description: descriptionHtml,
-        // Helps some readers; MailerLite will use the inline <img> in description.
         customData: `
           ${img ? `<enclosure url="${img}" type="${mime}" />` : ''}
           <guid isPermaLink="true">${url}</guid>
-        `
-
+        `,
       };
     }),
   });
