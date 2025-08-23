@@ -28,13 +28,14 @@ function mimeFromUrlOrDefault(url, fallback = 'image/jpeg') {
 
 export async function GET(ctx) {
   const posts = await sanityClient.fetch(`
-    *[_type == "socialPost" && defined(publishedAt) && publishedAt <= now()]
+    *[_type == "socialPost" && defined(publishedAt) && publishedAt <= now() && rss == true]
       | order(publishedAt desc)[0...30]{
         _id,
         title,
         "slug": slug.current,
         publishedAt,
         tags,
+        rss,
         ctaLink,
         // Plain text for title/excerpt
         "plaintext": pt::text(text),

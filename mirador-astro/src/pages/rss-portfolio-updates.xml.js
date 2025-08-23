@@ -32,9 +32,11 @@ export async function GET(ctx) {
       _type == "blog" &&
       category->title == "Portfolio Updates" &&
       defined(slug.current) &&
-      publishedAt <= now()
+      publishedAt <= now() &&
+      rss == true
     ] | order(publishedAt desc)[0...10]{
       title,
+      rss,
       "slug": slug.current,
       publishedAt,
       // Plain text only; ignores inline images in body.

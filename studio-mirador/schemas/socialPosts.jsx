@@ -45,6 +45,13 @@ export default {
       description: "Optional tags"
     },
     {
+      name: "rss",
+      title: "Add to RSS",
+      type: "boolean",
+      description: "If true, this post will be added to the RSS and subsequently scheduled to be included in marketing emails",
+      initialValue: false,
+    },
+    {
       name: "publishedAt",
       title: "Published At",
       type: "datetime",

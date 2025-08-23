@@ -21,11 +21,12 @@ function mimeFromUrlOrDefault(url, fallback = 'image/jpeg') {
 export async function GET(ctx) {
   const issues = await sanityClient.fetch(`
     *[_type == "magazinePage"].issues[]
-      [defined(publishedAt) && publishedAt <= now()]
+      [defined(publishedAt) && publishedAt <= now() && rss == true]
       | order(publishedAt desc)[0...10]{
         title,
         "slug": slug.current,
         publishedAt,
+        rss,
         image{ asset->{ url, mimeType } }
       }
   `);

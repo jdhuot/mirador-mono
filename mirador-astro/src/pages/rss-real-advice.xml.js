@@ -47,11 +47,13 @@ export async function GET(ctx) {
       _type == "blog" &&
       category->title == "Real Advice Blog" &&
       defined(slug.current) &&
-      publishedAt <= now()
+      publishedAt <= now() &&
+      rss == true
     ] | order(publishedAt desc)[0...10]{
       title,
       "slug": slug.current,
       publishedAt,
+      rss,
       excerpt,
       body,
       featuredImage{ asset->{ url, mimeType } }
