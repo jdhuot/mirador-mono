@@ -1,0 +1,253 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import heroImage from '../assets/happier/hero.png';
+
+import heroBg from '../assets/mirador-wealth-graphic-2.png';
+import MySwiper from '../components/MySwiper.jsx';
+
+import stanImage from '../assets/our-team/stan.jpg';
+import joyceImage from '../assets/our-team/joyce.jpg';
+
+import corpLogo from '../assets/footer-logo.png';
+
+const testimonials = [
+  // {
+  //   name: "Kate Dauphinee",
+  //   text: "Stan and Joyce make me feel as if I am their only client. They are great team and I feel confident investing with Mirador."
+  // },
+  {
+    name: "Carol Meleshko",
+    text: "My husband and I have been investing with Stan since about 1994. He has served our financial needs very well. Joyce is a great addition to his company.  They are very smart and wonderful people. They have our complete trust and faith. They are so down to earth and honest. They are so easy to talk to and can meet you at any level. We thank them both for what they do and for being who they are. You can't go wrong with them. If  you are looking to invest, choose them."
+  },
+  {
+    name: "Dieter Kromm",
+    text: "We first entrusted Stan with our investment portfolio during his RBC Dominion Securities tenure, then followed him to Scotia MacLeod and now Mirador. Stan and Joyce have created a unique, innovative and data/analytics-based investment service offering.   Thanks to their stewardship, our portfolio has performed very well over the years and we have not lost a moment of sleep worrying about our investments. As satisfied clients, we highly recommend Mirador. D. Kromm & D. Hawker"
+  },
+  {
+    name: "Susan Scott",
+    text: "As a long-term investor I have been extremely pleased with Mirador’s strong historical (and realistic) financial performance; objective, fact-based and unique investment approach; client focused service; and, their candid and informative approach. Stan and Joyce are an extremely diligent, hard-working and conscientious team. Their approach, results and focus on what’s best for their clients is truly unique and refreshing."
+  },
+]
+
+---
+
+<Layout 
+  title="Happier"
+  description="Led by seasoned professionals with decades of experience, we've navigated market ups and downs for 30 years, ensuring our clients thrive"
+>
+
+  <section>
+    <div class="container">
+      <div class="grid-2 lg center smb-5">
+        <div class="flex-v">
+          <h1>Happy vs. Happier</h1>
+          <h4 class="hero-h2 smb-2">Know the difference—and how your retirement plan can reach it's full potential</h4>
+          <a href="#sign-up">
+            <button class="button-primary">Get Your Free Guide</button>
+          </a>
+        </div>
+        <div class="image-wrapper" data-fade="from_right">
+          <img src={heroImage.src} alt="happy vs happier hero image"/>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+	<!-- <section>
+		<div class="relative container v-padding">
+			<img src={heroBg.src} class="services-hero-bg" />
+			<div class="tac mw-900">
+				<div class="services-hero-section">
+					<div class="hero-text flex-v center lrg">
+            <h4>Happy vs. Happier:</h4>
+						<h1>Retire with Confidence</h1>
+            <p>Know the difference—and how your retirement plan can reach it's full potential</p>
+            <a href="#sign-up">
+              <button class="button-primary">Get Your Free Guide</button>
+            </a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> -->
+
+  
+  <section>
+    <div class="container">
+      <div class="hr"></div>
+    </div>
+  </section>
+
+
+  <section class="v-padding">
+    <div class="container">
+      <div class="happier-grid">
+        <h3 class="heading">Happy</h3>
+        <h3 class="heading">Happier</h3>
+        <h3 class="heading">How?</h3>
+        <div class="happier-card">
+          <p>
+            You are finally ready  to retire.
+          </p>
+        </div>
+        <div class="happier-card">
+          <p>
+            You are set to retire knowing your lifestyle dreams can be realized because your investments will provide your income.
+          </p>
+        </div>
+        <div class="happier-card">
+          <p>
+            You've selected an investment firm with a financial retirement focus: income with stability.
+          </p>
+        </div>
+        <div class="happier-card">
+          <p>
+            You work with a financial advisor at your bank.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            You work with an independent financial advisory who is focused on investing for retirement.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            Your advisory has an unwavering commitment to true independence, no allegiances or associations with branch manager or head office.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            You have saved a nest egg.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            Your nest egg provides comfortable stablility with investments which produce excellent income.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            Your portfolio includes the Mirador Income and Stability fund.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            You have RRSPs for your retirement.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            You have investments designed to replace your income and provide for your future.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            Your retirement portfolio contains a diversified makeup of Fixed Income, Equity Income,  Covered Call Writing, and Market Exposure to provide high income and comfortable stability.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            You have funds to buy a retirement property.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            You have the money to buy a retirement home and understand the tax implications of owning a second property.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            Your financial advisory firm includes key members who will quarterback relationships with tax, legal and other advisors.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            Your big bank has an App where you can see what's happening with your investments.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            You are a phone call or email away from a conversation with your advisory to answer any questions or concerns.
+          </p>
+          
+        </div>
+        <div class="happier-card">
+          <p>
+            The personal service from Mirador Corp means we are easily accessible, flexible to meet at a time that's works for you and can provide you answers that you will be able to understand.
+          </p>
+          
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="v-padding">
+    <div class="container">
+      <div class="center tac">
+        <h2 class="smb-2">What our clients have to say about us</h2>
+        <MySwiper client:load slides={testimonials} type="text"/>
+      </div>
+    </div> 
+  </section> -->
+
+  <section class="v-padding cb-off-black" id="sign-up">
+		<div class="container">
+			<div class="tac flex-v center mw-800">
+				<h3 class="smb-1" data-fade="from_bottom">
+          Uncertain if your current path will lead to your Happy Ever After?
+        </h3>
+				<p data-fade="from_bottom">
+					Sign up now to receive our FREE guide 'Aligning Your Investment Portfolio With the Current and Upcoming Stages of Your Life'.
+				</p>
+				<div class="ml-embedded" data-form="o9gUXq"></div>
+				<!-- <form class="flex-v center" method="POST" name="Guide Request Form" data-netlify="true" onsubmit="handleSubmit(event)">
+					<div class="flex center">
+						<input type="hidden" name="form-type" value="Guide Request Form" />
+						<input type="text" name="Name" placeholder="Name" required />
+						<input type="email" name="Email" placeholder="Email" required />
+					</div>
+					<button type="submit" class="button-secondary">Submit</button>
+				</form>
+				<script is:inline>
+					async function handleSubmit(e) {
+						e.preventDefault();
+						const form = e.target;
+						const formData = new FormData(form);
+						const data = new URLSearchParams(formData).toString();
+				
+						try {
+							await fetch("/", {
+								method: "POST",
+								headers: { "Content-Type": "application/x-www-form-urlencoded" },
+								body: data,
+							});
+							// Display success message without reloading
+							form.innerHTML = "<p class='success'>Thanks! Your request has been submitted</p>";
+						} catch (error) {
+							// Handle errors
+							form.innerHTML = "<p>Submission failed. Please try again.</p>";
+						}
+					}
+				</script> -->
+			</div>
+		</div>
+	</section>
+
+
+</Layout>
