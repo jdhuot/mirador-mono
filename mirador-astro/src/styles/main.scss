@@ -31,6 +31,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html, body { 
+  max-width: 100%;
+  overflow-x: clip; /* use 'hidden' if older Safari; clip is better when supported */
+}
+
 .hide {
   display: none !important;
 }
@@ -1477,11 +1482,32 @@ footer {
 
 .happier-grid {
   display: grid;
-  grid-template-columns: 0.5fr 1fr 1.5fr;
+  grid-template-columns: 0.65fr 1fr 1.5fr;
   gap: 5rem;
   row-gap: 2.5rem;
   h3 {
     margin-bottom: 1rem;
+  }
+
+  .happier-headings {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: 0.65fr 1fr 1.5fr;
+    gap: 5rem;
+    padding: 1.5rem 0rem 0.5rem;
+
+    position: sticky;
+    top: 6.8rem;
+    z-index: 2;
+    background: var(--black);
+    @include max-width(tablet) {
+      gap: 1.5rem;
+      top: 0rem;
+    }
+    @include max-width(mobile) {
+      gap: 1rem;
+    }
+
   }
 
   .happier-card {
@@ -1529,7 +1555,7 @@ footer {
   @include max-width(mobile) {
     gap: 1rem;
     h3 {
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
     p {
       font-size: 0.75rem;
