@@ -10,7 +10,9 @@ export const sanityClient = createClient({
   dataset: "production",
   useCdn: false, // Set to false if you need fresh data every time
   apiVersion: "2024-02-01", // Use the latest API version
+  // perspective: "previewDrafts",
   perspective: "published",
+  token: 'skv1jftanxMMLLxkNve6OYcJPw1xVcpAnnQq3Nrb2SMvBelYgHkDWZvC33x9p0mxlIC4twvrHPGM2Knjl4PgTgkYPmLT0cVjMQEoNUZSpbeWW1cSq9Tn7YcSqixSQGaer5PXiH6bhwHFAMS40MfRQKwyIlOUdU8oRLil3Jbmf1cywvmjgxS5'
 });
 
 const builder = imageUrlBuilder(sanityClient);

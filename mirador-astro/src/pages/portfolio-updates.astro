@@ -25,7 +25,8 @@ const query = `*[_type == "blog" && category->title == "Portfolio Updates"] | or
   "createdAt": _createdAt
 }`;
 
-const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
+// const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
+const posts = await sanityClient.fetch(query, {});
 
 ---
 

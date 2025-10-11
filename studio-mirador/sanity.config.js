@@ -4,6 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {codeInput} from '@sanity/code-input'
 
+
 export default defineConfig({
   name: 'default',
   title: 'mirador',
