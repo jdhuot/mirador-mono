@@ -6,6 +6,7 @@ import { sanityClient } from "../lib/sanity.js";
 import PlainTextRenderer from "../components/PlainTextRenderer.jsx";
 import fallbackImage from "../assets/fallback.jpg";
 import BlogList from '../components/BlogList.jsx';
+import FilteredPosts from '../components/FilteredPosts.jsx';
 
 const query = `*[_type == "blog" && category->title == "Real Advice Blog"] | order(publishedAt desc) {
   title,
@@ -23,10 +24,20 @@ const query = `*[_type == "blog" && category->title == "Real Advice Blog"] | ord
     }
   },
   publishedAt,
-  "createdAt": _createdAt
+  "createdAt": _createdAt,
+  topics[]->{title, "slug": slug.current}
 }`;
 
 const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
+
+const topicQuery = `*[_type == "topics"][] | order(title asc) {
+  title,
+  'slug': slug.current,
+  _id 
+}`;
+const topics = await sanityClient.fetch(topicQuery, {});
+
+
 
 ---
 
@@ -47,8 +58,13 @@ const posts = await sanityClient.fetch(query, {}, { cache: "no-cache" });
         </div>
       </div>
 
-      {posts.length > 0 
-        ? <BlogList client:load posts={posts} />
+
+      <!-- {posts.length > 0
+        ? <BlogList client:load posts={filteredPosts} />
+        : <div class="tac"><h5>No posts found...</h5></div>
+      } -->
+      {posts.length > 0
+        ? <FilteredPosts client:load posts={posts} topics={topics} />
         : <div class="tac"><h5>No posts found...</h5></div>
       }
     </div>

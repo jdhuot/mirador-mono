@@ -24,8 +24,10 @@ const query = `*[_type == "blog" && slug.current == $slug][0] {
   category->{title, slug},
   author->{name},
   publishedAt,
+  topics[]->{title, slug},
   "createdAt": _createdAt
 }`;
+
 
 const post = await sanityClient.fetch(query, { slug });
 
@@ -41,6 +43,8 @@ export async function getStaticPaths() {
     params: { slug }
   }));
 }
+
+
 
 ---
 

@@ -46,6 +46,12 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "topics",
+      title: "Topics",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "topics" }] }],
+    },
+    {
       name: "author",
       title: "Author",
       type: "reference",
@@ -89,35 +95,7 @@ export default {
             }
           ]
         },
-        // manual table object
-        // {
-        //   type: "object",
-        //   name: "table",
-        //   title: "Table",
-        //   fields: [
-        //     {
-        //       name: "rows",
-        //       title: "Rows",
-        //       type: "array",
-        //       of: [
-        //         {
-        //           type: "object",
-        //           name: "row",
-        //           title: "Row",
-        //           fields: [
-        //             {
-        //               name: "cells",
-        //               title: "Cells",
-        //               type: "array",
-        //               of: [{ type: "string" }]
-        //             }
-        //           ]
-        //         }
-        //       ]
-        //     }
-        //   ]
-        // }
-        // { type: "table" },
+
       ],
       description: "Main blog content",
     },

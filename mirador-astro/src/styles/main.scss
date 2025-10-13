@@ -307,7 +307,20 @@ button {
   color: var(--black);
   font-weight: 600;
   font-size: 16px;
+  &.filter-tag {
+    font-size: 18px;
+    padding: .5rem 1rem;
+    &.active {
+      background: var(--light-blue);
+    }
+    &:hover {
+      background: var(--light-blue);
+    }
+  }
+
 }
+
+
 
 .callout {
   background: var(--off-black);
@@ -328,6 +341,18 @@ blockquote {
     font-size: 16px;
     font-style: normal;
   }
+}
+
+.blog-topics-wrapper {
+  display: flex;
+  margin: 2rem 0 3rem;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  // @include max-width(tablet) {
+  //   flex-
+  // }
 }
 
 .posts-body {
@@ -402,7 +427,16 @@ blockquote {
     }
     @include max-width(mobile) {
       width: auto;
-      min-width: 600px;
+      min-width: 100%;
+      padding: 0rem;
+      border-spacing: 1rem;
+      table-layout: auto;
+      td {
+        max-width: 200px !important;
+      }
+      td, th {
+        font-size: 14px;
+      }
     }
   }
 
