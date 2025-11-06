@@ -31,6 +31,13 @@ export default {
       description: "Optional subtitle",
     },
     {
+      name: "draftMode",
+      title: "Draft Mode",
+      type: "boolean",
+      description: "If true, this post will not be published to the collection page",
+      initialValue: true,
+    },
+    {
       name: "featuredImage",
       title: "Featured Image",
       type: "image",

@@ -8,7 +8,7 @@ import fallbackImage from "../assets/fallback.jpg";
 import BlogList from '../components/BlogList.jsx';
 import FilteredPosts from '../components/FilteredPosts.jsx';
 
-const query = `*[_type == "blog" && category->title == "Real Advice Blog"] | order(publishedAt desc) {
+const query = `*[_type == "blog" && category->title == "Real Advice Blog" && (!defined(draftMode) || draftMode == false)] | order(publishedAt desc) {
   title,
   slug,
   excerpt[]{
@@ -25,6 +25,7 @@ const query = `*[_type == "blog" && category->title == "Real Advice Blog"] | ord
   },
   publishedAt,
   "createdAt": _createdAt,
+  ...,
   topics[]->{title, "slug": slug.current}
 }`;
 

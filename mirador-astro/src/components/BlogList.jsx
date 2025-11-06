@@ -24,7 +24,7 @@ export default function BlogList({ posts }) {
             <div className="clamp">
               {post.excerpt
                 ? PlainTextRenderer(post.excerpt)
-                : PlainTextRenderer(post.body)}
+                : post.body ? PlainTextRenderer(post.body) : ''}
             </div>
             <a href={`/blog/${post.slug.current}`}>
               <button className="button-primary sm">Read More</button>

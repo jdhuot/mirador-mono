@@ -6,7 +6,7 @@ import { sanityClient } from "../lib/sanity.js";
 import PortableTextRenderer from "../components/PortableTextRenderer.jsx";
 import fallbackImage from "../assets/fallback.jpg";
 
-const query = `*[_type == "blog" && category->title == "Position Papers"] | order(publishedAt desc) {
+const query = `*[_type == "blog" && category->title == "Position Papers" && (!defined(draftMode) || draftMode == false)] | order(publishedAt desc) {
   title,
   slug,
   excerpt[]{
@@ -23,6 +23,7 @@ const query = `*[_type == "blog" && category->title == "Position Papers"] | orde
     }
   },
   publishedAt,
+  ...,
   "createdAt": _createdAt
 }`;
 
