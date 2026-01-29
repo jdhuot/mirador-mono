@@ -458,6 +458,14 @@ blockquote {
     }
   }
 
+  strong {
+    font-weight: 800;
+  }
+
+  strong em {
+    color: var(--light-blue);
+  }
+
 }
 
 form {
