@@ -384,6 +384,12 @@ blockquote {
   h6 {
     font-size: 22px;
   }
+
+  a {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
   ul, ol {
     margin: 1.5rem 0 2.5rem;
     li {
