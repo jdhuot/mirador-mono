@@ -6,6 +6,7 @@ import Tabs from '../components/Tabs.jsx';
 import MySwiper from '../components/MySwiper.jsx';
 
 import heroBg from '../assets/mirador-wealth-graphic.png';
+import heroImage from '../assets/home/hero-image.jpg';
 import expertsImage from '../assets/experts.jpg';
 
 import { sanityClient } from "../lib/sanity.js";
@@ -122,7 +123,8 @@ const tabItems = [
 					</a>
 				</div>
 				<div>
-					<img data-fade="from_bottom" src="/mirador-wealth-hero.png" alt="mirador-wealth-hero" class="hero-image" />
+					<!-- <img data-fade="from_bottom" src="/mirador-wealth-hero.png" alt="mirador-wealth-hero" class="hero-image" /> -->
+					<img data-fade="from_bottom" src={heroImage.src} alt="mirador-wealth-hero" class="hero-image" />
 				</div>
 			</div>
 		</div>
