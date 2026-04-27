@@ -950,6 +950,20 @@ form {
   @include max-width(mobile) {
     grid-template-columns: 1fr;
   }
+  &.home-page {
+    img {
+      object-position: right;
+    }
+    @media (max-width: 992px) {
+      h1 {
+        font-size: 46px;
+      }
+      grid-template-columns: 1fr 1fr;
+    }
+    @include max-width(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
 
